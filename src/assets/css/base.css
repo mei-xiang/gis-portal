@@ -1,0 +1,56 @@
+/* 公共样式 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  font-family: 'microsoft', '微软雅黑';
+  -webkit-tap-highlight-color: transparent;
+  background: #fff;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+  color: #000;
+}
+
+/* .clearfix::after{
+  content: '';
+  height: 0;
+  width: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+} */
+.clearFix::before,
+.clearFix::after {
+  content: '';
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+input,
+table {
+  border: none;
+  outline: none;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
