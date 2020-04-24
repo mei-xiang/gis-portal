@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>服务站相关</el-breadcrumb-item>
       <el-breadcrumb-item>分页查询</el-breadcrumb-item>
     </el-breadcrumb>
@@ -20,26 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        {
-          "msg": "系统异常500:org.springframework.data.mongodb.InvalidMongoDbApiUsageException: Due to limitations of the com.mongodb.BasicDocument, you can't add a second 'type' expression specified as 'type : Document{{$in=[0]}}'. Criteria already contains 'type : 0'.\norg.springframework.data.mongodb.InvalidMongoDbApiUsageException: Due to limitations of the com.mongodb.BasicDocument, you can't add a second 'type' expression specified as 'type : Document{{$in=[0]}}'. Criteria already contains 'type : 0'.\n\tat org.springframework.data.mongodb.core.query.Criteria.setValue(Criteria.java:784)\n\tat org.springframework.data.mongodb.core.query.Criteria.getCriteriaObject(Criteria.java:717)\n\tat org.springframework.data.mongodb.core.query.Query.getQueryObject(Query.java:231)\n\tat org.springframework.data.mongodb.core.MongoTemplate.find(MongoTemplate.java:820)\n\tat org.springframework.data.mongodb.core.MongoTemplate.find(MongoTemplate.java:806)\n\tat com.t3.ts.gis.position.provider.service.LocationServiceImpl.querySiteByPage(LocationServiceImpl.java:209)\n\tat com.alibaba.dubbo.common.bytecode.Wrapper8.invokeMethod(Wrapper8.java)\n\tat com.alibaba.dubbo.rpc.proxy.javassist.JavassistProxyFactory$1.doInvoke(JavassistProxyFactory.java:47)\n\tat com.alibaba.dubbo.rpc.proxy.AbstractProxyInvoker.invoke(AbstractProxyInvoker.java:76)\n\tat com.alibaba.dubbo.config.invoker.DelegateProviderMetaDataInvoker.invoke(DelegateProviderMetaDataInvoker.java:52)\n\tat com.alibaba.dubbo.rpc.protocol.InvokerWrapper.invoke(InvokerWrapper.java:56)\n\tat com.alibaba.dubbo.rpc.filter.ExceptionFilter.invoke(ExceptionFilter.java:62)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.t3.ts.gis.position.provider.filter.RpcLogFilter.invoke(RpcLogFilter.java:38)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.monitor.support.MonitorFilter.invoke(MonitorFilter.java:75)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.filter.TimeoutFilter.invoke(TimeoutFilter.java:42)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.protocol.dubbo.filter.TraceFilter.invoke(TraceFilter.java:78)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.filter.ContextFilter.invoke(ContextFilter.java:72)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.filter.GenericFilter.invoke(GenericFilter.java:131)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.filter.ClassLoaderFilter.invoke(ClassLoaderFilter.java:38)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.filter.EchoFilter.invoke(EchoFilter.java:38)\n\tat com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:72)\n\tat com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.reply(DubboProtocol.java:103)\n\tat com.alibaba.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:96)\n\tat com.alibaba.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:172)\n\tat com.alibaba.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51)\n\tat com.alibaba.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:80)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
-          "code": 500,
-          "data": null,
-          "success": false,
-          "exception": null,
-          "attachment": null,
-          "errCode": 500
-        }
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getPageData } from 'network/site'
 export default {
   data() {
     return {
@@ -77,7 +78,8 @@ export default {
         },
         {
           param: 'coordinate',
-          mean: '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
+          mean:
+            '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Coordinate',
           request: '必填'
         },
@@ -92,6 +94,12 @@ export default {
           mean: '创建时间',
           type: 'String',
           request: '必填'
+        },
+        {
+          param: 'currentPage',
+          mean: 'currentPage',
+          type: 'Integer',
+          request: '可选'
         },
         {
           param: 'distance',
@@ -121,6 +129,12 @@ export default {
           param: 'name',
           mean: '名称',
           type: 'String',
+          request: '必填'
+        },
+        {
+          param: 'pageSize',
+          mean: 'pageSize',
+          type: 'Integer',
           request: '必填'
         },
         {
@@ -165,12 +179,167 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'address',
+          value: 'string',
+          mean: '详细地址',
+          request: '必填'
+        },
+        {
+          param: 'areaCode',
+          value: 'string',
+          mean: '区域编码',
+          request: '必填'
+        },
+        {
+          param: 'city',
+          value: 'string',
+          mean: '城市',
+          request: '必填'
+        },
+        {
+          param: 'cityCode',
+          value: 'string',
+          mean: '城市编码',
+          request: '必填'
+        },
+        {
+          param: 'cityCodeList',
+          value: '["string","string"]',
+          mean: '区域编码列表。如：["值1","值2",...]',
+          request: '必填'
+        },
+        {
+          param: 'coordinate',
+          value: '{"lat": 0,"lng": 0}',
+          mean:
+            '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
+          request: '必填'
+        },
+        {
+          param: 'country',
+          value: 'string',
+          mean: '区县',
+          request: '必填'
+        },
+        {
+          param: 'createTime',
+          value: '2020-04-23T06:17:43.884Z',
+          mean: '创建时间',
+          request: '必填'
+        },
+        {
+          param: 'currentPage',
+          value: 0,
+          mean: 'currentPage',
+          request: '可选'
+        },
+        {
+          param: 'distance',
+          value: 0,
+          mean: '距离',
+          request: '必填'
+        },
+        {
+          param: 'id',
+          value: 'string',
+          mean: '数据唯一主键',
+          request: '必填'
+        },
+        {
+          param: 'lat',
+          value: 0,
+          mean: '纬度',
+          request: '必填'
+        },
+        {
+          param: 'lng',
+          value: 0,
+          mean: '经度',
+          request: '必填'
+        },
+        {
+          param: 'name',
+          value: 'string',
+          mean: '名称',
+          request: '必填'
+        },
+        {
+          param: 'pageSize',
+          value: 0,
+          mean: 'pageSize',
+          request: '必填'
+        },
+        {
+          param: 'province',
+          value: 'string',
+          mean: '省份',
+          request: '必填'
+        },
+        {
+          param: 'status',
+          value: 0,
+          mean: '状态（-1：删除、0：无效、1：生效）键',
+          request: '必填'
+        },
+        {
+          param: 'supplierId',
+          value: 'string',
+          mean: '供应商ID',
+          request: '必填'
+        },
+        {
+          param: 'type',
+          value: 0,
+          mean: '站点类型(0:加油站,1:充电站,2:加气站,3:维修站,4:司机之家)',
+          request: '必填'
+        },
+        {
+          param: 'typeList',
+          value: '[0]',
+          mean: '站点类型集合。如：[1,2,...]',
+          request: '必填'
+        },
+        {
+          param: 'updateTime',
+          value: '2020-04-23T06:17:43.884Z',
+          mean: '更新时间',
+          request: '必填'
+        },
+        {
+          param: 'uuid',
+          value: 'string',
+          mean: '服务站点信息唯一标识键',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      condtionObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'cityCodeList') {
+          this.condtionObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'coordinate') {
+          this.condtionObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'typeList') {
+          this.condtionObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.condtionObj[item.param] = item.value
+        }
+      })
+      // console.log(this.condtionObj)
+      // this.condtionObj = new Page(this.exptableData)
+      getPageData(this.condtionObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

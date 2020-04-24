@@ -3,7 +3,7 @@
     <!-- 面包屑 -->
     <!-- :to="{ path: '/v1/geocode/geo' }" -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>距离计算</el-breadcrumb-item>
       <el-breadcrumb-item>批量距离计算</el-breadcrumb-item>
     </el-breadcrumb>
@@ -21,33 +21,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-      {
-        "msg": "距离测量查询成功",
-        "code": 200,
-        "data": [
-          {
-            "duration": "0",
-            "distance": "0",
-            "origin_id": "1",
-            "dest_id": "1"
-          }
-        ],
-        "success": true,
-        "exception": null,
-        "attachment": null,
-        "errCode": 200
-      }
-    </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getMultiOrigin } from 'network/distance'
 export default {
   data() {
     return {
@@ -67,7 +61,8 @@ export default {
         },
         {
           param: 'originList',
-          mean: '批量出发地到同一目的地,最多100个,上面的单个出发地不传。Coordinate {lat (number, optional),lng (number, optional)}',
+          mean:
+            '批量出发地到同一目的地,最多100个,上面的单个出发地不传。Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Array[Coordinate]',
           request: '必填'
         },
@@ -85,16 +80,73 @@ export default {
         },
         {
           param: 'type',
-          mean: '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现高德地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
+          mean:
+            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现高德地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
           type: 'Integer',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'destinationLag',
+          value: 0,
+          mean: '目的地 纬度度 经纬度小数点不超过6位',
+          request: '必填'
+        },
+        {
+          param: 'destinationLng',
+          value: 0,
+          mean: '目的地 经度 经纬度小数点不超过6位',
+          request: '必填'
+        },
+        {
+          param: 'originList',
+          value: '[{"lat": 0,"lng": 0}]',
+          mean:
+            '批量出发地到同一目的地,最多100个,上面的单个出发地不传。Coordinate {lat (number, optional),lng (number, optional)}。如：[{"lat": 0,"lng": 0}]',
+          request: '必填'
+        },
+        {
+          param: 'originsLag',
+          value: 0,
+          mean: '出发点 纬度',
+          request: '必填'
+        },
+        {
+          param: 'originsLng',
+          value: 0,
+          mean: '出发点 经度',
+          request: '必填'
+        },
+        {
+          param: 'type',
+          value: 0,
+          mean:
+            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现高德地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      distanceObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'originList') {
+          this.distanceObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.distanceObj[item.param] = item.value
+        }
+      })
+      // 通过类整合数据
+      // this.distanceObj = new Condtion(this.exptableData)
+      getMultiOrigin(this.distanceObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

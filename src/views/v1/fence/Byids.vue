@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>围栏相关接口</el-breadcrumb-item>
       <el-breadcrumb-item>批量获取电子围栏信息</el-breadcrumb-item>
     </el-breadcrumb>
@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getByidsData } from 'network/fence'
 export default {
   data() {
     return {
@@ -43,12 +52,24 @@ export default {
           type: 'Array[string]',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'uuids',
+          value: '["string","string"]',
+          mean: 'uuids。如：["值1","值2",...]',
+          request: '必填'
+        }
+      ],
+      content: ''
     }
   },
   methods: {
     run() {
       this.isRun = true
+      getByidsData(JSON.parse(this.exptableData[0].value)).then(res => {
+        this.content = res
+      })
     }
   }
 }

@@ -1,32 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// // 主模块
-// const Home = () => import('views/Home')
-// // 概述模块
-// const Summary = () => import('views/summary/Summary')
-// // 服务端模块
-// const Restrict = () => import('views/server/beforeservice/Restrict')
-// const Price = () => import('views/server/beforeservice/Price')
-// const Compute = () => import('views/server/beforeservice/Compute')
-// const Pickup = () => import('views/server/beforeservice/Pickup')
-// const Trip = () => import('views/server/inservice/Trip')
-// const Vehicletrace = () => import('views/server/inservice/Vehicletrace')
-// const Routebind = () => import('views/server/inservice/Routebind')
-// const Ordertrace = () => import('views/server/afterservice/Ordertrace')
-// const Vdc = () => import('views/server/others/Vdc')
-// const Odc = () => import('views/server/others/Odc')
-// // 客户端模块
-// const Nearbycarandroid = () => import('views/sdk/beforeservice/Nearbycarandroid')
-// const Nearbycarios = () => import('views/sdk/beforeservice/Nearbycarios')
-// const Pickupspotandroid = () => import('views/sdk/beforeservice/Pickupspotandroid')
-// const Pickupspotios = () => import('views/sdk/beforeservice/Pickupspotios')
-// const Sctxandroid = () => import('views/sdk/inservice/Sctxandroid')
-// const Sctxios = () => import('views/sdk/inservice/Sctxios')
-// const Selectionandroid = () => import('views/sdk/inservice/Selectionandroid')
-// const Selectionios = () => import('views/sdk/inservice/Selectionios')
-// // 下载模块
-// const Download = () => import('views/download/Download')
+// 首页
+const Index = () => import('views/Index')
+// 中心介绍
+const Introduce = () => import('views/introduce/Introduce')
+// 案例文档
+const Case = () => import('views/case/Case')
+// FAQ
+const Questions = () => import('views/questions/Questions')
 
 // 主模块
 const Home = () => import('views/Home')
@@ -34,7 +16,7 @@ const Home = () => import('views/Home')
 const Geo = () => import('views/v1/geocode/Geo')
 const Regeo = () => import('views/v1/geocode/Regeo')
 // 服务健康检查
-const Health = () => import('views/v1/health/Health')
+// const Health = () => import('views/v1/health/Health')
 // 服务站相关
 const Byid = () => import('views/v1/site/Byid')
 const Condtion = () => import('views/v1/site/Condtion')
@@ -82,168 +64,186 @@ const PoiUpsert = () => import('views/v1/poi/Upsert')
 
 Vue.use(VueRouter)
 
-const routes = [
-  { path: '/', redirect: '/home' },
+const routes = [{
+  path: '/',
+  // redirect: '/home'
+  component: Index
+},
+{
+  path: '/introduce',
+  component: Introduce
+},
+{
+  path: '/case',
+  component: Case
+},
+{
+  path: '/questions',
+  component: Questions
+},
+{
+  path: '/home',
+  redirect: '/v1/geocode/geo',
+  // path: '/v1/geocode/geo',
+  component: Home,
+  children: [{
+    path: '/v1/geocode/geo',
+    component: Geo
+  },
   {
-    path: '/home',
-    component: Home,
-    redirect: '/v1/geocode/geo',
-    children: [
-      { path: '/v1/geocode/geo', component: Geo },
-      {
-        path: '/v1/geocode/regeo',
-        component: Regeo
-      },
-      {
-        path: '/health',
-        component: Health
-      },
-      {
-        path: '/v1/site/byid',
-        component: Byid
-      },
-      {
-        path: '/v1/site/condtion',
-        component: Condtion
-      },
-      {
-        path: '/v1/site/delete',
-        component: Delete
-      },
-      {
-        path: '/v1/site/insert-site-all',
-        component: InsertSiteAll
-      },
-      {
-        path: '/v1/site/page',
-        component: Page
-      },
-      {
-        path: '/v1/site/sync',
-        component: Sync
-      },
-      {
-        path: '/v1/site/upsert',
-        component: Upsert
-      },
-      {
-        path: '/v1/vehicle/cars',
-        component: Cars
-      },
-      {
-        path: '/v1/vehicle/nearest-car',
-        component: NearestCar
-      },
-      {
-        path: '/v1/distance/multi-origin',
-        component: MultiOrigin
-      },
-      {
-        path: '/v1/distance/query',
-        component: Query
-      },
-      {
-        path: '/v1/route/compute',
-        component: Compute
-      },
-      {
-        path: '/v1/route/drive-route-plan',
-        component: DriveRoutePlan
-      },
-      {
-        path: '/v1/route/vehicle-track',
-        component: VehicleTrack
-      },
-      {
-        path: '/v1/heatmap/query-disparity-heatmap-data',
-        component: QueryDisparity
-      },
-      {
-        path: '/v1/heatmap/query-heatmap-data',
-        component: QueryHeatmap
-      },
-      {
-        path: '/v1/fence/byids',
-        component: Byids
-      },
-      {
-        path: '/v1/fence/bypoint',
-        component: Bypoint
-      },
-      {
-        path: '/v1/fence/condition',
-        component: Condition
-      },
-      {
-        path: '/v1/fence/delete',
-        component: FenceDelete
-      },
-      {
-        path: '/v1/fence/is-intersection',
-        component: Intersection
-      },
-      {
-        path: '/v1/fence/is-point-in-condition',
-        component: InCondition
-      },
-      {
-        path: '/v1/fence/is-point-in-uuids',
-        component: Uuids
-      },
-      {
-        path: '/v1/fence/page',
-        component: FencePage
-      },
-      {
-        path: '/v1/fence/sync-status',
-        component: SyncStatus
-      },
-      {
-        path: '/v1/fence/update-status',
-        component: UpdateStatus
-      },
-      {
-        path: '/v1/fence/upsert',
-        component: FenceUpsert
-      },
-      {
-        path: '/v1/point/convert-to-gad-location',
-        component: Location
-      },
-      {
-        path: '/v1/point/is-point-in-polygon',
-        component: Polygon
-      },
-      {
-        path: '/v1/poi/around',
-        component: Around
-      },
-      {
-        path: '/v1/poi/custom/byid',
-        component: CustomByid
-      },
-      {
-        path: '/v1/poi/custom/count-by-condition',
-        component: CustomCondition
-      },
-      {
-        path: '/v1/poi/custom/page',
-        component: PoiPage
-      },
-      {
-        path: '/v1/poi/custom/status-switch',
-        component: Switch
-      },
-      {
-        path: '/v1/poi/custom/upsert',
-        component: PoiUpsert
-      },
-      {
-        path: '/v1/poi/keyword',
-        component: Keyword
-      }
-    ]
+    path: '/v1/geocode/regeo',
+    component: Regeo
+  },
+  // {
+  //   path: '/health',
+  //   component: Health
+  // },
+  {
+    path: '/v1/site/byid',
+    component: Byid
+  },
+  {
+    path: '/v1/site/condtion',
+    component: Condtion
+  },
+  {
+    path: '/v1/site/delete',
+    component: Delete
+  },
+  {
+    path: '/v1/site/insert-site-all',
+    component: InsertSiteAll
+  },
+  {
+    path: '/v1/site/page',
+    component: Page
+  },
+  {
+    path: '/v1/site/sync',
+    component: Sync
+  },
+  {
+    path: '/v1/site/upsert',
+    component: Upsert
+  },
+  {
+    path: '/v1/vehicle/cars',
+    component: Cars
+  },
+  {
+    path: '/v1/vehicle/nearest-car',
+    component: NearestCar
+  },
+  {
+    path: '/v1/distance/multi-origin',
+    component: MultiOrigin
+  },
+  {
+    path: '/v1/distance/query',
+    component: Query
+  },
+  {
+    path: '/v1/route/compute',
+    component: Compute
+  },
+  {
+    path: '/v1/route/drive-route-plan',
+    component: DriveRoutePlan
+  },
+  {
+    path: '/v1/route/vehicle-track',
+    component: VehicleTrack
+  },
+  {
+    path: '/v1/heatmap/query-disparity-heatmap-data',
+    component: QueryDisparity
+  },
+  {
+    path: '/v1/heatmap/query-heatmap-data',
+    component: QueryHeatmap
+  },
+  {
+    path: '/v1/fence/byids',
+    component: Byids
+  },
+  {
+    path: '/v1/fence/bypoint',
+    component: Bypoint
+  },
+  {
+    path: '/v1/fence/condition',
+    component: Condition
+  },
+  {
+    path: '/v1/fence/delete',
+    component: FenceDelete
+  },
+  {
+    path: '/v1/fence/is-intersection',
+    component: Intersection
+  },
+  {
+    path: '/v1/fence/is-point-in-condition',
+    component: InCondition
+  },
+  {
+    path: '/v1/fence/is-point-in-uuids',
+    component: Uuids
+  },
+  {
+    path: '/v1/fence/page',
+    component: FencePage
+  },
+  {
+    path: '/v1/fence/sync-status',
+    component: SyncStatus
+  },
+  {
+    path: '/v1/fence/update-status',
+    component: UpdateStatus
+  },
+  {
+    path: '/v1/fence/upsert',
+    component: FenceUpsert
+  },
+  {
+    path: '/v1/point/convert-to-gad-location',
+    component: Location
+  },
+  {
+    path: '/v1/point/is-point-in-polygon',
+    component: Polygon
+  },
+  {
+    path: '/v1/poi/around',
+    component: Around
+  },
+  {
+    path: '/v1/poi/custom/byid',
+    component: CustomByid
+  },
+  {
+    path: '/v1/poi/custom/count-by-condition',
+    component: CustomCondition
+  },
+  {
+    path: '/v1/poi/custom/page',
+    component: PoiPage
+  },
+  {
+    path: '/v1/poi/custom/status-switch',
+    component: Switch
+  },
+  {
+    path: '/v1/poi/custom/upsert',
+    component: PoiUpsert
+  },
+  {
+    path: '/v1/poi/keyword',
+    component: Keyword
   }
+  ]
+}
 ]
 
 const router = new VueRouter({

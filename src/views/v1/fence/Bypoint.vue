@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>围栏相关接口</el-breadcrumb-item>
       <el-breadcrumb-item>匹配的围栏结果</el-breadcrumb-item>
     </el-breadcrumb>
@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>判断一个或多个坐标是否在指定的一批围栏内，并返回所有的匹配的围栏结果接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/byids</p>
+    <p>http://192.168.44.152:8080/v1/fence/bypoint</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -27,18 +27,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getBypointData } from 'network/fence'
 export default {
   data() {
     return {
@@ -46,7 +55,8 @@ export default {
       tableData: [
         {
           param: 'coordinate',
-          mean: 'Coordinate {lat (number, optional),lng (number, optional)}',
+          mean:
+            '坐标。Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Coordinate',
           request: '必填'
         },
@@ -130,12 +140,113 @@ export default {
           type: 'Integer',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'coordinate',
+          value: '{"lat": 0,"lng": 0}',
+          mean:
+            '坐标。Coordinate {lat (number, optional),lng (number, optional)}',
+          request: '必填'
+        },
+        {
+          param: 'addressTypeList',
+          value: '[0]',
+          mean: '出发地/目的地 。多选：1出发地，2 目的地。如：[1,2,...]',
+          request: '必填'
+        },
+        {
+          param: 'cityCode',
+          value: 'string',
+          mean: '城市编码',
+          request: '必填'
+        },
+        {
+          param: 'companyId',
+          value: 'string',
+          mean: '企业id',
+          request: '必填'
+        },
+        {
+          param: 'createTime',
+          value: '2020-04-24T02:23:26.230Z',
+          mean: 'createTime',
+          request: '必填'
+        },
+        {
+          param: 'direction',
+          value: 0,
+          mean: '正向/逆向 单选 ：1正向，2 逆向',
+          request: '必填'
+        },
+        {
+          param: 'filterType',
+          value: 0,
+          mean: '过滤类型：1,乘客可见”、2:“乘客不可见”、3 :“司机/车辆过滤”',
+          request: '必填'
+        },
+        {
+          param: 'name',
+          value: 'string',
+          mean: '围栏名称',
+          request: '必填'
+        },
+        {
+          param: 'platformCode',
+          value: 0,
+          mean: '平台类型',
+          request: '必填'
+        },
+        {
+          param: 'provinceCode',
+          value: 'string',
+          mean: '省份编码',
+          request: '必填'
+        },
+        {
+          param: 'railType',
+          value: 0,
+          mean: '围栏类型(RailTypeEnum)',
+          request: '必填'
+        },
+        {
+          param: 'serviceType',
+          value: 0,
+          mean: '业务类型(1，出租车，2，专车，4，快车，99.全选)',
+          request: '必填'
+        },
+        {
+          param: 'status',
+          value: 0,
+          mean: ' 状态（1:正常，2：未生效， 3失效 ）',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      bypointObj: {
+        coordinate: {},
+        fenceQuery: {}
+      }
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'coordinate') {
+          this.bypointObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'addressTypeList') {
+          this.bypointObj.fenceQuery[item.param] = JSON.parse(item.value)
+        } else {
+          this.bypointObj.fenceQuery[item.param] = item.value
+        }
+      })
+      // console.log(this.bypointObj)
+      getBypointData(this.bypointObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>服务站相关</el-breadcrumb-item>
       <el-breadcrumb-item>新增或修改站点</el-breadcrumb-item>
     </el-breadcrumb>
@@ -20,26 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        {
-          "msg": "更新站点信息成功",
-          "code": 200,
-          "data": null,
-          "success": true,
-          "exception": null,
-          "attachment": null,
-          "errCode": 200
-        }
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getUpsertData } from 'network/site'
 export default {
   data() {
     return {
@@ -55,6 +56,12 @@ export default {
           param: 'areaCode',
           mean: '区域编码',
           type: 'String',
+          request: '必填'
+        },
+        {
+          param: 'bizType',
+          mean: '1 新增 2 修改',
+          type: 'Integer',
           request: '必填'
         },
         {
@@ -77,7 +84,8 @@ export default {
         },
         {
           param: 'coordinate',
-          mean: '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
+          mean:
+            '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Coordinate',
           request: '必填'
         },
@@ -165,12 +173,159 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'address',
+          value: 'string',
+          mean: '详细地址',
+          request: '必填'
+        },
+        {
+          param: 'areaCode',
+          value: 'string',
+          mean: '区域编码',
+          request: '必填'
+        },
+        {
+          param: 'bizType',
+          value: 0,
+          mean: '1 新增 2 修改',
+          request: '必填'
+        },
+        {
+          param: 'city',
+          value: 'string',
+          mean: '城市',
+          request: '必填'
+        },
+        {
+          param: 'cityCode',
+          value: 'string',
+          mean: '城市编码',
+          request: '必填'
+        },
+        {
+          param: 'cityCodeList',
+          value: '["string","string"]',
+          mean: '区域编码列表。如：["值1","值2",...]',
+          request: '必填'
+        },
+        {
+          param: 'coordinate',
+          value: '{"lat": 0,"lng": 0}',
+          mean:
+            '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
+          request: '必填'
+        },
+        {
+          param: 'country',
+          value: 'string',
+          mean: '区县',
+          request: '必填'
+        },
+        {
+          param: 'createTime',
+          value: '2020-04-23T06:17:43.884Z',
+          mean: '创建时间',
+          request: '必填'
+        },
+        {
+          param: 'distance',
+          value: 0,
+          mean: '距离',
+          request: '必填'
+        },
+        {
+          param: 'id',
+          value: 'string',
+          mean: '数据唯一主键',
+          request: '必填'
+        },
+        {
+          param: 'lat',
+          value: 0,
+          mean: '纬度',
+          request: '必填'
+        },
+        {
+          param: 'lng',
+          value: 0,
+          mean: '经度',
+          request: '必填'
+        },
+        {
+          param: 'name',
+          value: 'string',
+          mean: '名称',
+          request: '必填'
+        },
+        {
+          param: 'province',
+          value: 'string',
+          mean: '省份',
+          request: '必填'
+        },
+        {
+          param: 'status',
+          value: 0,
+          mean: '状态（-1：删除、0：无效、1：生效）键',
+          request: '必填'
+        },
+        {
+          param: 'supplierId',
+          value: 'string',
+          mean: '供应商ID',
+          request: '必填'
+        },
+        {
+          param: 'type',
+          value: 0,
+          mean: '站点类型(0:加油站,1:充电站,2:加气站,3:维修站,4:司机之家)',
+          request: '必填'
+        },
+        {
+          param: 'typeList',
+          value: '[0]',
+          mean: '站点类型集合。如：[1,2,...]',
+          request: '必填'
+        },
+        {
+          param: 'updateTime',
+          value: '2020-04-23T06:17:43.884Z',
+          mean: '更新时间',
+          request: '必填'
+        },
+        {
+          param: 'uuid',
+          value: 'string',
+          mean: '服务站点信息唯一标识键',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      upsertObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'cityCodeList') {
+          this.upsertObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'coordinate') {
+          this.upsertObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'typeList') {
+          this.upsertObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.upsertObj[item.param] = item.value
+        }
+      })
+      getUpsertData(this.upsertObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

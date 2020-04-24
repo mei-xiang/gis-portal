@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>围栏相关接口</el-breadcrumb-item>
       <el-breadcrumb-item>分页获取围栏</el-breadcrumb-item>
     </el-breadcrumb>

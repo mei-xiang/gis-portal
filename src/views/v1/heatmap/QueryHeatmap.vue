@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>热力图统计</el-breadcrumb-item>
       <el-breadcrumb-item>获取热力图统计数据</el-breadcrumb-item>
     </el-breadcrumb>
@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getHeatmapData } from 'network/heatmap'
 export default {
   data() {
     return {
@@ -45,7 +54,8 @@ export default {
         },
         {
           param: 'points',
-          mean: '坐标集合。Point {lat (number, optional),lng (number, optional)}',
+          mean:
+            '坐标集合。Point {lat (number, optional),lng (number, optional)}',
           type: 'Array[Point]',
           request: '必填'
         },
@@ -55,12 +65,49 @@ export default {
           type: 'Integer',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'areaCode',
+          value: 'string',
+          mean: '区域编码',
+          request: '必填'
+        },
+        {
+          param: 'points',
+          value: '{"lat": 0,"lng": 0}',
+          mean:
+            '坐标集合。Point {lat (number, optional),lng (number, optional)}',
+          request: '必填'
+        },
+        {
+          param: 'resolution',
+          value: 0,
+          mean: '索引精度',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      heatmapObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'points') {
+          this.heatmapObj[item.param] = [JSON.parse(item.value)]
+        } else {
+          this.heatmapObj[item.param] = item.value
+        }
+      })
+      // 通过类整合数据
+      // this.heatmapObj = new Condtion(this.exptableData)
+      getHeatmapData(this.heatmapObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

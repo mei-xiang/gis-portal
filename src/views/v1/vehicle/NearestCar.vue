@@ -3,7 +3,7 @@
     <!-- 面包屑 -->
     <!-- :to="{ path: '/v1/geocode/geo' }" -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>获取车辆信息</el-breadcrumb-item>
       <el-breadcrumb-item>最近车辆</el-breadcrumb-item>
     </el-breadcrumb>
@@ -21,26 +21,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-      {
-        "msg": "最近车辆信息查询为空",
-        "code": 200,
-        "data": null,
-        "success": true,
-        "exception": null,
-        "attachment": null,
-        "errCode": 200
-      }
-    </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getNearestCar } from 'network/vehicle'
 export default {
   data() {
     return {
@@ -100,12 +101,84 @@ export default {
           type: 'Integer',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'executeOrderStatus',
+          value: 0,
+          mean: '车辆上订单状态，0:空，1:满, 2:拼车',
+          request: '必填'
+        },
+        {
+          param: 'latitude',
+          value: 0,
+          mean: '纬度',
+          request: '必填'
+        },
+        {
+          param: 'limit',
+          value: 0,
+          mean: '最多取多少辆',
+          request: '必填'
+        },
+        {
+          param: 'longitude',
+          value: 0,
+          mean: '经度',
+          request: '必填'
+        },
+        {
+          param: 'onlineStatus',
+          value: 0,
+          mean: '司机登录上下线状态，0:下线，1:上线',
+          request: '必填'
+        },
+        {
+          param: 'radius',
+          value: 0,
+          mean: '范围半径【单位：米】',
+          request: '必填'
+        },
+        {
+          param: 'type',
+          value: 0,
+          mean: '车辆类型',
+          request: '必填'
+        },
+        {
+          param: 'useLevelTypeList',
+          value: '[0]',
+          mean: '1经济型 2舒适型 3行政型 4商务型 5尊贵型。如：[1,2,...]',
+          request: '必填'
+        },
+        {
+          param: 'vehicleStatus',
+          value: 0,
+          mean: '车辆状态信息 0-不显示 1-显示',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      nearestCarObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'useLevelTypeList') {
+          this.nearestCarObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.nearestCarObj[item.param] = item.value
+        }
+      })
+      // 通过类整合数据
+      // this.nearestCarObj = new Condtion(this.exptableData)
+      getNearestCar(this.nearestCarObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

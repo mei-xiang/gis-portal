@@ -1,7 +1,7 @@
 <template>
   <!-- 面包屑 -->
   <el-breadcrumb separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">您现在的位置： 开发</el-breadcrumb-item>
+    <el-breadcrumb-item :to="{ path: '/' }">api接入说明</el-breadcrumb-item>
     <el-breadcrumb-item>
       <slot name="firstMenu"></slot>
     </el-breadcrumb-item>

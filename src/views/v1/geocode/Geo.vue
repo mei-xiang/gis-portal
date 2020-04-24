@@ -3,7 +3,7 @@
     <!-- 面包屑 -->
     <!-- :to="{ path: '/v1/geocode/geo' }" -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>您现在的位置： 开发</el-breadcrumb-item>
+      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>地理编码</el-breadcrumb-item>
       <el-breadcrumb-item>地理编码-地址转为将坐标</el-breadcrumb-item>
     </el-breadcrumb>
@@ -21,40 +21,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="ExptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <!-- <p>Headers</p>
-    <pre>
-        {
-          "access-control-allow-credentials": "true",
-          "access-control-allow-headers": "Origin, X-Requested-With, Content-Type, Accept",
-          "access-control-allow-methods": "POST, GET, PATCH, DELETE, PUT",
-          "access-control-allow-origin": "*",
-          "access-control-max-age": "3600",
-          "connection": "keep-alive",
-          "content-type": "application/json;charset=UTF-8",
-          "date": "Tue, 21 Apr 2020 11:41:18 GMT",
-          "transfer-encoding": "chunked"
-        }
-    </pre>-->
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-      {
-        "msg": "成功",
-        "code": 200,
-        "data": [],
-        "success": true,
-        "exception": null,
-        "attachment": null,
-        "errCode": 200
-      }
-    </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getGeoData } from 'network/geocode'
 export default {
   data() {
     return {
@@ -72,12 +59,36 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      ExptableData: [
+        {
+          param: 'address',
+          value: '北京市朝阳区阜通东大街6号',
+          mean: '地址',
+          request: '必填'
+        },
+        {
+          param: 'city',
+          value: '北京',
+          mean: '城市',
+          request: '必填'
+        }
+      ],
+      // runData: {
+      //   address: '北京市朝阳区阜通东大街6号',
+      //   city: '北京'
+      // },
+      content: ''
     }
   },
   methods: {
     run() {
       this.isRun = true
+      getGeoData(this.ExptableData[0].value, this.ExptableData[1].value).then(
+        res => {
+          this.content = res
+        }
+      )
     }
   }
 }
@@ -137,6 +148,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>
