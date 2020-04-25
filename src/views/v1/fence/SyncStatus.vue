@@ -21,27 +21,29 @@
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getSyncStatusData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
-      tableData: []
+      tableData: [],
+      content: ''
     }
   },
   methods: {
     run() {
       this.isRun = true
+      getSyncStatusData().then(res => {
+        this.content = res
+      })
     }
   }
 }

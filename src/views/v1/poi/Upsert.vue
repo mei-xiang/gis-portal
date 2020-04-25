@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getUpsertData } from 'network/poi'
 export default {
   data() {
     return {
@@ -62,14 +71,20 @@ export default {
           request: '必填'
         },
         {
+          param: 'areaIdList',
+          mean: '运营区域id List',
+          type: 'Array[string]',
+          request: '必填'
+        },
+        {
           param: 'bizTypeEnum',
-          mean: 'LIFT/AUTO_DRIVER',
+          mean: ' 业务类型 = LIFT/AUTO_DRIVER',
           type: 'String',
           request: '必填'
         },
         {
           param: 'cityCode',
-          mean: 'cityCode',
+          mean: '城市编码',
           type: 'String',
           request: '必填'
         },
@@ -87,13 +102,13 @@ export default {
         },
         {
           param: 'lat',
-          mean: 'lat',
+          mean: '纬度',
           type: 'String',
           request: '必填'
         },
         {
           param: 'lng',
-          mean: 'lng',
+          mean: '经度',
           type: 'String',
           request: '必填'
         },
@@ -106,13 +121,13 @@ export default {
         },
         {
           param: 'pointType',
-          mean: 'pointType',
+          mean: '1：上车点 2： 下车点',
           type: 'Integer',
           request: '必填'
         },
         {
           param: 'status',
-          mean: 'status',
+          mean: 'true 使用 false 停用',
           type: 'Boolean',
           request: '必填'
         },
@@ -128,12 +143,128 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'adCode',
+          value: 'string',
+          mean: 'adCode',
+          request: '必填'
+        },
+        {
+          param: 'address',
+          value: 'string',
+          mean: 'address',
+          request: '必填'
+        },
+        {
+          param: 'addressDetail',
+          value: 'string',
+          mean: 'addressDetail',
+          request: '必填'
+        },
+        {
+          param: 'areaId',
+          value: 'string',
+          mean: 'areaId',
+          request: '必填'
+        },
+        {
+          param: 'areaIdList',
+          value: '["string","string"]',
+          mean: '运营区域id List。如：["值1","值2",...]',
+          request: '必填'
+        },
+        {
+          param: 'bizTypeEnum',
+          value: 'LIFT',
+          mean: ' 业务类型 = LIFT/AUTO_DRIVER',
+          request: '必填'
+        },
+        {
+          param: 'cityCode',
+          value: 'string',
+          mean: '城市编码',
+          request: '必填'
+        },
+        {
+          param: 'createTime',
+          value: '2020-04-25T10:18:56.216Z',
+          mean: 'createTime',
+          request: '必填'
+        },
+        {
+          param: 'creator',
+          value: 'string',
+          mean: 'creator',
+          request: '必填'
+        },
+        {
+          param: 'lat',
+          value: 'string',
+          mean: '纬度',
+          request: '必填'
+        },
+        {
+          param: 'lng',
+          value: 'string',
+          mean: '经度',
+          request: '必填'
+        },
+        {
+          param: 'poiId',
+          value: 'string',
+          mean:
+            '不传时为新增，上车点id（共12位，前八位创建的年月日，后四位数字按创建顺序升序，不足4位用0补齐，如20203250001，202032513451 或 业务标识+自增的 12位，如SFC0000001 总长度 10 位',
+          request: '必填'
+        },
+        {
+          param: 'pointType',
+          value: 0,
+          mean: '1：上车点 2： 下车点',
+          request: '必填'
+        },
+        {
+          param: 'status',
+          value: 'true',
+          mean: 'true 使用 false 停用',
+          request: '必填'
+        },
+        {
+          param: 'updateTime',
+          value: '2020-04-25T10:18:56.216Z',
+          mean: 'updateTime',
+          request: '必填'
+        },
+        {
+          param: 'updater',
+          value: 'string',
+          mean: 'updater',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      condtionObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'status') {
+          this.condtionObj[item.param] = JSON.parse(item.value)
+        }
+        if (item.param === 'areaIdList') {
+          this.condtionObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.condtionObj[item.param] = item.value
+        }
+      })
+      getUpsertData(this.condtionObj).then(res => {
+        this.content = res
+      })
     }
   }
 }
@@ -193,6 +324,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>

@@ -6,8 +6,9 @@
       <!-- 内容区域 -->
       <el-container class="container">
         <el-aside width="230px">
+          <!-- /v1/geocode/geo -->
           <el-menu
-            default-active="/v1/geocode/geo"
+            :default-active="$route.path"
             class="el-menu-vertical-demo"
             background-color="#EEF3F6"
             text-color="#303133"

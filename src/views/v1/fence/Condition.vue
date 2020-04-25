@@ -273,5 +273,16 @@ export default {
     background-color: #0e81e5;
     margin-right: 10px;
   }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
+  }
 }
 </style>

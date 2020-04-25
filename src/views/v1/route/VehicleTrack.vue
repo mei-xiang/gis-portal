@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getVehicleTrackData } from 'network/route'
 export default {
   data() {
     return {
@@ -73,12 +82,62 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'endTime',
+          value: 0,
+          mean: 'endTime',
+          request: '必填'
+        },
+        {
+          param: 'isPoints',
+          value: 0,
+          mean: 'isPoints',
+          request: '必填'
+        },
+        {
+          param: 'startTime',
+          value: 0,
+          mean: 'startTime',
+          request: '必填'
+        },
+        {
+          param: 'tollInfo',
+          value: 0,
+          mean: 'tollInfo',
+          request: '必填'
+        },
+        {
+          param: 'truncateTime',
+          value: 'string',
+          mean: 'truncateTime',
+          request: '必填'
+        },
+        {
+          param: 'vehicleId',
+          value: 'string',
+          mean: 'vehicleId',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      distanceObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        this.distanceObj[item.param] = item.value
+      })
+      // 通过类整合数据
+      // this.distanceObj = new Condtion(this.exptableData)
+      getVehicleTrackData(this.distanceObj).then(res => {
+        this.content = res
+      })
     }
   }
 }
@@ -138,6 +197,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>

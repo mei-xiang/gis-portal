@@ -20,35 +20,56 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getFenceDeleteData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
       tableData: [
         {
-          param: 'uuids',
-          mean: 'uuids',
+          param: 'uuid',
+          mean: 'uuid',
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'uuid',
+          value: 1,
+          mean: 'uuid',
+          request: '必填'
+        }
+      ],
+      content: ''
     }
   },
   methods: {
     run() {
       this.isRun = true
+      getFenceDeleteData(Number(this.exptableData[0].value)).then(res => {
+        this.content = res
+      })
     }
   }
 }

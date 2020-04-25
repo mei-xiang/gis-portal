@@ -28,26 +28,20 @@ export function getConditionData(fenceObj) {
   })
 }
 
-export function getFenceDeleteData(fenceObj) {
+export function getFenceDeleteData(uuid) {
   return request({
     method: 'delete',
     url: '/v1/fence/delete',
-    data: fenceObj
+    params: {
+      uuid
+    }
   })
 }
 
-export function getFencePageData(fenceObj) {
+export function getIntersectionData(fenceObj) {
   return request({
     method: 'post',
-    url: '/v1/fence/page',
-    data: fenceObj
-  })
-}
-
-export function getFenceUpsertData(fenceObj) {
-  return request({
-    method: 'post',
-    url: '/v1/fence/upsert',
+    url: '/v1/fence/is-intersection',
     data: fenceObj
   })
 }
@@ -60,34 +54,44 @@ export function getInConditionData(fenceObj) {
   })
 }
 
-export function getIntersectionData(fenceObj) {
-  return request({
-    method: 'post',
-    url: '/v1/fence/is-intersection',
-    data: fenceObj
-  })
-}
-
-export function getSyncStatusData(fenceObj) {
-  return request({
-    method: 'post',
-    url: '/v1/fence/sync-status',
-    data: fenceObj
-  })
-}
-
-export function getUpdateStatusData(fenceObj) {
-  return request({
-    method: 'post',
-    url: '/v1/fence/update-status',
-    data: fenceObj
-  })
-}
-
 export function getUuidsData(fenceObj) {
   return request({
     method: 'post',
     url: '/v1/fence/is-point-in-uuids',
+    data: fenceObj
+  })
+}
+
+export function getFencePageData(fenceObj) {
+  return request({
+    method: 'post',
+    url: '/v1/fence/page',
+    data: fenceObj
+  })
+}
+
+export function getSyncStatusData() {
+  return request({
+    method: 'post',
+    url: '/v1/fence/sync-status'
+  })
+}
+
+export function getUpdateStatusData(uuid, status) {
+  return request({
+    method: 'post',
+    url: '/v1/fence/update-status',
+    params: {
+      uuid,
+      status
+    }
+  })
+}
+
+export function getFenceUpsertData(fenceObj) {
+  return request({
+    method: 'post',
+    url: '/v1/fence/upsert',
     data: fenceObj
   })
 }

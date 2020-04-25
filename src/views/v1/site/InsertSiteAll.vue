@@ -19,7 +19,7 @@
       <el-table-column prop="param" label="参数"></el-table-column>
       <el-table-column prop="mean" label="含义"></el-table-column>
       <el-table-column prop="type" label="类型"></el-table-column>
-      <el-table-column prop="request" label="是否必填"></el-table-column>
+      <el-table-column prop="request" label="是否选填"></el-table-column>
     </el-table>
     <p>服务实例</p>
     <el-table :data="exptableData" border style="width: 100%" class="expTable">
@@ -30,7 +30,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="mean" label="含义"></el-table-column>
-      <el-table-column prop="request" label="是否必填"></el-table-column>
+      <el-table-column prop="request" label="是否选填"></el-table-column>
     </el-table>
     <h4>响应</h4>
     <button class="run" @click="run" style="margin: 10px 0">运行</button>
@@ -51,122 +51,122 @@ export default {
           param: 'address',
           mean: '详细地址',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaCode',
           mean: '区域编码',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'city',
           mean: '城市',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
           mean: '城市编码',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCodeList',
           mean: '区域编码列表',
           type: 'Array[string]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'coordinate',
           mean:
             '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Coordinate',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'country',
           mean: '区县',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           mean: '创建时间',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'distance',
           mean: '距离',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'id',
           mean: '数据唯一主键',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lat',
           mean: '纬度',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lng',
           mean: '经度',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           mean: '名称',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'province',
           mean: '省份',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
           mean: '状态（-1：删除、0：无效、1：生效）键',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'supplierId',
           mean: '供应商ID',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
           mean: '站点类型(0:加油站,1:充电站,2:加气站,3:维修站,4:司机之家)',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'typeList',
           mean: '站点类型集合',
           type: 'Array[integer]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updateTime',
           mean: '更新时间',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuid',
           mean: '服务站点信息唯一标识键',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -174,122 +174,122 @@ export default {
           param: 'address',
           value: 'string',
           mean: '详细地址',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaCode',
           value: 'string',
           mean: '区域编码',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'city',
           value: 'string',
           mean: '城市',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
           value: 'string',
           mean: '城市编码',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCodeList',
           value: '["string","string"]',
           mean: '区域编码列表。如：["值1","值2",...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'coordinate',
           value: '{"lat": 0,"lng": 0}',
           mean:
             '经纬度对象。 Coordinate {lat (number, optional),lng (number, optional)}',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'country',
           value: 'string',
           mean: '区县',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           value: '2020-04-23T06:17:43.884Z',
           mean: '创建时间',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'distance',
           value: 0,
           mean: '距离',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'id',
           value: 'string',
           mean: '数据唯一主键',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lat',
           value: 0,
           mean: '纬度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lng',
           value: 0,
           mean: '经度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           value: 'string',
           mean: '名称',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'province',
           value: 'string',
           mean: '省份',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
           value: 0,
           mean: '状态（-1：删除、0：无效、1：生效）键',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'supplierId',
           value: 'string',
           mean: '供应商ID',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
           value: 0,
           mean: '站点类型(0:加油站,1:充电站,2:加气站,3:维修站,4:司机之家)',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'typeList',
           value: '[0]',
           mean: '站点类型集合。如：[1,2,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updateTime',
           value: '2020-04-23T06:17:43.884Z',
           mean: '更新时间',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuid',
           value: 'string',
           mean: '服务站点信息唯一标识键',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据

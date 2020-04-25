@@ -27,18 +27,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getDriveRoutePlanData } from 'network/route'
 export default {
   data() {
     return {
@@ -145,12 +154,251 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'cartype',
+          value: 0,
+          mean: '0：普通汽车(默认值) 1：纯电动车 2：插电混动车',
+          request: '必填',
+          type: 'cartype'
+        },
+        // {
+        //   param: 'destination',
+        //   value: 0,
+        //   mean: '目的地',
+        //   type: 'Location',
+        //   request: '必填'
+        // },
+        {
+          param: 'direction',
+          value: 0,
+          mean: '目的地-direction',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'executeOrderStatus',
+          value: 0,
+          mean: '目的地-executeOrderStatus',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'latitude',
+          value: 0,
+          mean: '目的地-latitude',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'longitude',
+          value: 0,
+          mean: '目的地-longitude',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'onlineStatus',
+          value: 0,
+          mean: '目的地-onlineStatus',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'timestamp',
+          value: 0,
+          mean: '目的地-timestamp',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'vin',
+          value: 'vin',
+          mean: '目的地-string',
+          request: '必填',
+          type: 'destination'
+        },
+        {
+          param: 'ferry',
+          value: 0,
+          mean:
+            '在路径规划中，是否使用轮渡，默认 0 0:使用渡轮(默认) 1:不使用渡轮',
+          request: '必填',
+          type: 'ferry'
+        },
+        {
+          param: 'number',
+          value: 'string',
+          mean:
+            '填入除省份及标点之外，车牌的字母和数字（需大写）。用于判断限行相关。(例如：A12345)',
+          request: '必填',
+          type: 'number'
+        },
+        // {
+        //   param: 'origin',
+        //   value: 0,
+        //   mean: '出发点',
+        //   type: 'Location',
+        //   request: '必填'
+        // },
+        {
+          param: 'direction',
+          value: 0,
+          mean: '出发点-direction',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'executeOrderStatus',
+          value: 0,
+          mean: '出发点-executeOrderStatus',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'latitude',
+          value: 0,
+          mean: '出发点-latitude',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'longitude',
+          value: 0,
+          mean: '出发点-longitude',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'onlineStatus',
+          value: 0,
+          mean: '出发点-onlineStatus',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'timestamp',
+          value: 0,
+          mean: '出发点-timestamp',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'vin',
+          value: 'string',
+          mean: '出发点-vin',
+          request: '必填',
+          type: 'origin'
+        },
+        {
+          param: 'province',
+          value: 'string',
+          mean: '用汉字填入车牌省份缩写，用于判断是否限行，（例如：京）',
+          request: '必填',
+          type: 'province'
+        },
+        {
+          param: 'roadaggregation',
+          value: 'true',
+          mean:
+            '是否返回路径聚合信息，默认 false。false:不返回路径聚合信息;true:返回路径聚合信息，在steps上层增加roads做聚合',
+          request: '必填',
+          type: 'roadaggregation'
+        },
+        {
+          param: 'strategy',
+          value: 'string',
+          mean: '导航策略',
+          request: '必填',
+          type: 'strategy'
+        },
+        // {
+        //   param: 'waypoints',
+        //   value: 0,
+        //   mean: '途径点，最多16个，按照用户输入顺序放入。',
+        //   type: 'Array[Location]',
+        //   request: '必填'
+        // }
+        {
+          param: 'direction',
+          value: 0,
+          mean: '途径点-direction',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'executeOrderStatus',
+          value: 0,
+          mean: '途径点-executeOrderStatus',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'latitude',
+          value: 0,
+          mean: '途径点-latitude',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'longitude',
+          value: 0,
+          mean: '途径点-longitude',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'onlineStatus',
+          value: 0,
+          mean: '途径点-onlineStatus',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'timestamp',
+          value: 0,
+          mean: '途径点-timestamp',
+          request: '必填',
+          type: 'waypoints'
+        },
+        {
+          param: 'vin',
+          value: 'string',
+          mean: '途径点-vin',
+          request: '必填',
+          type: 'waypoints'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      distanceObj: {
+        destination: {},
+        origin: {},
+        waypoints: [{}]
+      }
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.type === 'destination') {
+          this.distanceObj.destination[item.param] = item.value
+        } else if (item.type === 'origin') {
+          this.distanceObj.origin[item.param] = item.value
+        } else if (item.type === 'waypoints') {
+          this.distanceObj.waypoints[0][item.param] = item.value
+        } else if (item.param === 'roadaggregation') {
+          this.distanceObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.distanceObj[item.param] = item.value
+        }
+      })
+      getDriveRoutePlanData(this.distanceObj).then(res => {
+        this.content = res
+      })
     }
   }
 }

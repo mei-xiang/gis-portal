@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getComputeData } from 'network/route'
 export default {
   data() {
     return {
@@ -49,12 +58,33 @@ export default {
           type: 'Object',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'key',
+          value: 'string',
+          mean: 'key',
+          request: '必填'
+        },
+        {
+          param: 'map',
+          value: '{}',
+          mean: 'map',
+          request: '必填'
+        }
+      ],
+      content: ''
     }
   },
   methods: {
     run() {
       this.isRun = true
+      getComputeData(
+        this.exptableData[0].value,
+        JSON.parse(this.exptableData[1].value)
+      ).then(res => {
+        this.content = res
+      })
     }
   }
 }
@@ -114,6 +144,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>

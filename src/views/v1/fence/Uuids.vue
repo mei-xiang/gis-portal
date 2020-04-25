@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getUuidsData } from 'network/fence'
 export default {
   data() {
     return {
@@ -50,12 +59,43 @@ export default {
           type: 'Array[string]',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'coordinateList',
+          value: '[{"lat": 0,"lng": 0},{"lat": 0,"lng": 0}]',
+          mean:
+            'Coordinate [{lat (number, optional),lng (number, optional)}]。坐标集合',
+          request: '必填'
+        },
+        {
+          param: 'uuids',
+          value: '["string","string"]',
+          mean: 'uuids。如：["值1","值2",...]',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      bypointObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'coordinateList') {
+          this.bypointObj[item.param] = JSON.parse(item.value)
+        } else if (item.param === 'uuids') {
+          this.bypointObj[item.param] = JSON.parse(item.value)
+        } else {
+          this.bypointObj[item.param] = item.value
+        }
+      })
+      getUuidsData(this.bypointObj).then(res => {
+        this.content = res
+      })
     }
   }
 }
@@ -115,6 +155,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>

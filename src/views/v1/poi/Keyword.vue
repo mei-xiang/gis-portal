@@ -20,18 +20,27 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
+    <p>服务实例</p>
+    <el-table :data="exptableData" border style="width: 100%" class="expTable">
+      <el-table-column prop="param" label="参数"></el-table-column>
+      <el-table-column label="值">
+        <template slot-scope="scope">
+          <el-input v-model="scope.row.value"></el-input>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mean" label="含义"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
+    </el-table>
     <h4>响应</h4>
-    <div v-if="isRun===true">
-      <p>Body</p>
-      <pre>
-        no content
-      </pre>
+    <button class="run" @click="run" style="margin: 10px 0">运行</button>
+    <div v-if="isRun===true" style="height: 200px;overflow:auto;border:1px solid #ccc">
+      <pre>{{content}}</pre>
     </div>
-    <button class="run" @click="run">运行</button>
   </div>
 </template>
 
 <script>
+import { getKeywordData } from 'network/poi'
 export default {
   data() {
     return {
@@ -87,12 +96,74 @@ export default {
           type: 'String',
           request: '必填'
         }
-      ]
+      ],
+      exptableData: [
+        {
+          param: 'address',
+          value: 'string',
+          mean: 'address',
+          request: '必填'
+        },
+        {
+          param: 'areaId',
+          value: 'string',
+          mean: '运营区域id，bizType为3时候生效',
+          request: '必填'
+        },
+        {
+          param: 'bizType',
+          value: 0,
+          mean:
+            '暂支持的业务类型：1，快享、专享 3，自动驾驶， 99，高德 ；默认为 1',
+          request: '必填'
+        },
+        {
+          param: 'cityCode',
+          value: 'string',
+          mean: '城市编码',
+          request: '必填'
+        },
+        {
+          param: 'limit',
+          value: 0,
+          mean: '上下车点频次最高top',
+          request: '必填'
+        },
+        {
+          param: 'passengerId',
+          value: 'string',
+          mean: '乘客ID，bizType为1时候生效',
+          request: '必填'
+        },
+        {
+          param: 'pointType',
+          value: 1,
+          mean: '1：上车点 2： 下车点 bizType=1且address不为空时生效',
+          request: '必填'
+        },
+        {
+          param: 'types',
+          value: 'string',
+          mean:
+            '查询POI类型,如15010：交通设施服务-机场相关 bizType为99时候生效',
+          request: '必填'
+        }
+      ],
+      // 运行显示数据
+      content: '',
+      // 请求对象，通过class处理
+      condtionObj: {}
     }
   },
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        this.condtionObj[item.param] = item.value
+      })
+      getKeywordData(this.condtionObj).then(res => {
+        this.content = res
+      })
     }
   }
 }
@@ -152,6 +223,17 @@ export default {
     border-radius: 2px;
     background-color: #0e81e5;
     margin-right: 10px;
+  }
+  .expTable.el-table--border th {
+    border: 1px solid #0e81e5;
+    border-right-color: #3e9aea;
+    height: 38px;
+    line-height: 38px;
+    background: #0e81e5;
+    color: #fff;
+    text-align: left;
+    // padding: 9px 16px;
+    white-space: nowrap;
   }
 }
 </style>
