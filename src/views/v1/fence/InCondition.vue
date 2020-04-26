@@ -58,19 +58,19 @@ export default {
           mean:
             'Coordinate {lat (number, optional),lng (number, optional)}。 坐标集合，如果judgeAddressType为true，严格按照出发地、途经点、目的地的顺序：第一个坐标为出发地，最后一个坐标为目的地，中间的为途经点',
           type: 'Array[Coordinate]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'fenceQuery',
           mean: '电子围栏查询对象',
           type: 'Object',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'judgeAddressType',
           mean: '是否判断始发地、目的地，默认为false不判断',
           type: 'Boolean',
-          request: '必填'
+          request: '选填'
         }
       ],
       tableData1: [
@@ -78,7 +78,7 @@ export default {
           param: 'addressTypeList',
           mean: '出发地/目的地 多选：1出发地，2 目的地',
           type: 'Array[integer]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
@@ -90,43 +90,43 @@ export default {
           param: 'companyId',
           mean: '企业id',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           mean: 'createTime',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'direction',
           mean: '正向/逆向 单选 ：1正向，2 逆向',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterType',
           mean: '过滤类型：1,乘客可见”、2:“乘客不可见”、3 :“司机/车辆过滤”',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           mean: '围栏名称',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'platformCode',
           mean: '平台类型',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'provinceCode',
           mean: '省份编码',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'railType',
@@ -138,13 +138,13 @@ export default {
           param: 'serviceType',
           mean: '业务类型(1，出租车，2，专车，4，快车，99.全选)',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
           mean: ' 状态（1:正常，2：未生效， 3失效 ）',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -153,13 +153,13 @@ export default {
           value: '[{"lat": 0,"lng": 0},{"lat": 0,"lng": 0}]',
           mean:
             '坐标集合，如果judgeAddressType为true，严格按照出发地、途经点、目的地的顺序：第一个坐标为出发地，最后一个坐标为目的地，中间的为途经点。coordinateList [{lat (number, optional),lng (number, optional)}]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'addressTypeList',
           value: '[0]',
           mean: '出发地/目的地 。多选：1出发地，2 目的地。如：[1,2,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
@@ -171,43 +171,43 @@ export default {
           param: 'companyId',
           value: 'string',
           mean: '企业id',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           value: '2020-04-24T02:23:26.230Z',
           mean: 'createTime',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'direction',
           value: 0,
           mean: '正向/逆向 单选 ：1正向，2 逆向',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterType',
           value: 0,
           mean: '过滤类型：1,乘客可见”、2:“乘客不可见”、3 :“司机/车辆过滤”',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           value: 'string',
           mean: '围栏名称',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'platformCode',
           value: 0,
           mean: '平台类型',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'provinceCode',
           value: 'string',
           mean: '省份编码',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'railType',
@@ -219,13 +219,13 @@ export default {
           param: 'serviceType',
           value: 0,
           mean: '业务类型(1，出租车，2，专车，4，快车，99.全选)',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
           value: 0,
           mean: '状态（1:正常，2：未生效， 3失效 ）',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'judgeAddressType',
@@ -248,9 +248,11 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'coordinateList') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : [{}]
         } else if (item.param === 'addressTypeList') {
-          this.bypointObj.fenceQuery[item.param] = JSON.parse(item.value)
+          this.bypointObj.fenceQuery[item.param] = item.value
+            ? JSON.parse(item.value)
+            : []
         } else if (item.param === 'judgeAddressType') {
           this.bypointObj[item.param] = Boolean(item.value)
         } else {

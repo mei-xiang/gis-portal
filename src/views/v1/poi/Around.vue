@@ -62,7 +62,7 @@ export default {
           param: 'limit',
           mean: '上下车点频次最高top',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'location',
@@ -75,19 +75,19 @@ export default {
           param: 'passengerId',
           mean: '乘客ID，暂支持 bizType为1',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           mean: '1：上车点 2： 下车点 暂支持 bizType为1',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'radius',
           mean: '范围半径【单位：米】 默认2km，当存在lng、lat参数时生效',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -107,7 +107,7 @@ export default {
           param: 'limit',
           value: 0,
           mean: '上下车点频次最高top',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'location',
@@ -120,19 +120,19 @@ export default {
           param: 'passengerId',
           value: 'string',
           mean: '乘客ID，暂支持 bizType为1',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           value: 0,
           mean: '1：上车点 2： 下车点 暂支持 bizType为1',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'radius',
           value: 0,
           mean: '范围半径【单位：米】 默认2km，当存在lng、lat参数时生效',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据
@@ -144,6 +144,15 @@ export default {
   methods: {
     run() {
       this.isRun = true
+      this.exptableData.forEach((item, index) => {
+        if (item.param === 'location') {
+          this.condtionObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : {}
+        } else {
+          this.condtionObj[item.param] = item.value
+        }
+      })
       getAroundData(this.condtionObj).then(res => {
         this.content = res
       })

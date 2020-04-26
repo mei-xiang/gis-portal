@@ -48,37 +48,37 @@ export default {
       tableData: [
         {
           param: 'endTime',
-          mean: 'endTime',
+          mean: '需要查询的轨迹终止时间',
           type: 'Integer',
           request: '必填'
         },
         {
           param: 'isPoints',
-          mean: 'isPoints',
+          mean: '是否返回轨迹点。 1 - 返回， 0 - 不返回， 默认值 0',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'startTime',
-          mean: 'startTime',
+          mean: '需要查询的轨迹起始时间',
           type: 'Integer',
           request: '必填'
         },
         {
           param: 'tollInfo',
-          mean: 'tollInfo',
+          mean: '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'truncateTime',
-          mean: 'truncateTime',
+          mean: '断点时间',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vehicleId',
-          mean: 'vehicleId',
+          mean: '车辆ID',
           type: 'String',
           request: '必填'
         }
@@ -87,37 +87,37 @@ export default {
         {
           param: 'endTime',
           value: 0,
-          mean: 'endTime',
+          mean: '需要查询的轨迹终止时间',
           request: '必填'
         },
         {
           param: 'isPoints',
           value: 0,
-          mean: 'isPoints',
-          request: '必填'
+          mean: '是否返回轨迹点。 1 - 返回， 0 - 不返回， 默认值 0',
+          request: '选填'
         },
         {
           param: 'startTime',
           value: 0,
-          mean: 'startTime',
+          mean: '需要查询的轨迹起始时间',
           request: '必填'
         },
         {
           param: 'tollInfo',
           value: 0,
-          mean: 'tollInfo',
-          request: '必填'
+          mean: '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
+          request: '选填'
         },
         {
           param: 'truncateTime',
           value: 'string',
-          mean: 'truncateTime',
-          request: '必填'
+          mean: '断点时间',
+          request: '选填'
         },
         {
           param: 'vehicleId',
           value: 'string',
-          mean: 'vehicleId',
+          mean: '车辆ID',
           request: '必填'
         }
       ],

@@ -57,7 +57,7 @@ export default {
           mean:
             '坐标集合。Point {lat (number, optional),lng (number, optional)}',
           type: 'Array[Point]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'resolution',
@@ -78,7 +78,7 @@ export default {
           value: '{"lat": 0,"lng": 0}',
           mean:
             '坐标集合。Point {lat (number, optional),lng (number, optional)}',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'resolution',
@@ -98,7 +98,9 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'points') {
-          this.heatmapObj[item.param] = [JSON.parse(item.value)]
+          this.heatmapObj[item.param] = item.value
+            ? [JSON.parse(item.value)]
+            : [{}]
         } else {
           this.heatmapObj[item.param] = item.value
         }

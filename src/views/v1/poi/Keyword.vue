@@ -50,13 +50,13 @@ export default {
           param: 'address',
           mean: 'address',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaId',
           mean: '运营区域id，bizType为3时候生效',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'bizType',
@@ -75,26 +75,26 @@ export default {
           param: 'limit',
           mean: '上下车点频次最高top',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'passengerId',
           mean: '乘客ID，bizType为1时候生效',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           mean: '1：上车点 2： 下车点 bizType=1且address不为空时生效',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'types',
           mean:
             '查询POI类型,如15010：交通设施服务-机场相关 bizType为99时候生效',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -102,13 +102,13 @@ export default {
           param: 'address',
           value: 'string',
           mean: 'address',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaId',
           value: 'string',
           mean: '运营区域id，bizType为3时候生效',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'bizType',
@@ -127,26 +127,26 @@ export default {
           param: 'limit',
           value: 0,
           mean: '上下车点频次最高top',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'passengerId',
           value: 'string',
           mean: '乘客ID，bizType为1时候生效',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           value: 1,
           mean: '1：上车点 2： 下车点 bizType=1且address不为空时生效',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'types',
           value: 'string',
           mean:
             '查询POI类型,如15010：交通设施服务-机场相关 bizType为99时候生效',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据

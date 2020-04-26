@@ -51,7 +51,7 @@ export default {
           mean:
             'Coordinate {lat (number, optional),lng (number, optional)}。坐标集合',
           type: 'Array[Coordinate]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuids',
@@ -66,7 +66,7 @@ export default {
           value: '[{"lat": 0,"lng": 0},{"lat": 0,"lng": 0}]',
           mean:
             'Coordinate [{lat (number, optional),lng (number, optional)}]。坐标集合',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuids',
@@ -86,9 +86,9 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'coordinateList') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : [{}]
         } else if (item.param === 'uuids') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : []
         } else {
           this.bypointObj[item.param] = item.value
         }

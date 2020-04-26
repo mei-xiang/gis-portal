@@ -50,7 +50,7 @@ export default {
           param: 'addressTypeList',
           mean: '出发地/目的地 多选：1出发地，2 目的地',
           type: 'Array[integer]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
@@ -62,81 +62,81 @@ export default {
           param: 'companyId',
           mean: '企业id',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           mean: 'createTime',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'creator',
           mean: 'creator',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'direction',
           mean: '正向/逆向 单选 ：1正向，2 逆向',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'effectiveTime',
           mean: '生效时间',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'extAttr',
           mean:
             '扩展属性字段，内容存json格式，如交通枢纽围栏的优质单订单距离阈值 {tripDistance:"1000"}',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'failureTime',
           mean: '失效时间',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'fencePoint',
           mean:
             'Coordinate {lat (number, optional),lng (number, optional)}。围栏中心点',
           type: 'Coordinate',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterTagList',
           mean: '过滤标签 1，‘无人证’,2，‘无车证’',
           type: 'Array[integer]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterType',
           mean: '过滤类型：1,乘客可见”、2:“乘客不可见”、3 :“司机/车辆过滤”',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           mean: '围栏名称',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'platformCode',
           mean: '平台类型',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'provinceCode',
           mean: '省份编码',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'railType',
@@ -148,7 +148,7 @@ export default {
           param: 'remark',
           mean: '备注',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'scope',
@@ -172,19 +172,19 @@ export default {
           param: 'updateTime',
           mean: ' updateTime',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updater',
           mean: ' updater',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuid',
           mean: ' uuid',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -192,7 +192,7 @@ export default {
           param: 'addressTypeList',
           value: '[1]',
           mean: '出发地/目的地 多选：1出发地，2 目的地。如：[1,2,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
@@ -204,81 +204,81 @@ export default {
           param: 'companyId',
           value: 'string',
           mean: '企业id',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           value: '2020-04-25T09:07:10.294Z',
           mean: 'createTime',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'creator',
           value: 'string',
           mean: 'creator',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'direction',
           value: 0,
           mean: '正向/逆向 单选 ：1正向，2 逆向',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'effectiveTime',
           value: '2020-04-25T09:07:10.294Z',
           mean: '生效时间',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'extAttr',
           value: 'string',
           mean:
             '扩展属性字段，内容存json格式，如交通枢纽围栏的优质单订单距离阈值 {tripDistance:"1000"}',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'failureTime',
           value: '2020-04-25T09:07:10.294Z',
           mean: '失效时间',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'fencePoint',
           value: '{"lat": 0,"lng": 0}',
           mean:
             'Coordinate {lat (number, optional),lng (number, optional)}。围栏中心点',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterTagList',
           value: '[1]',
           mean: '过滤标签 1，‘无人证’,2，‘无车证’。如：[1,2,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'filterType',
           value: 0,
           mean: '过滤类型：1,乘客可见”、2:“乘客不可见”、3 :“司机/车辆过滤”',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'name',
           value: 'string',
           mean: '围栏名称',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'platformCode',
           value: 0,
           mean: '平台类型',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'provinceCode',
           value: 'string',
           mean: '省份编码',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'railType',
@@ -290,7 +290,7 @@ export default {
           param: 'remark',
           value: 'string',
           mean: '备注',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'scope',
@@ -314,19 +314,19 @@ export default {
           param: 'updateTime',
           value: '2020-04-25T09:07:10.294Z',
           mean: 'updateTime',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updater',
           value: 'string',
           mean: 'updater',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'uuid',
           value: 'string',
           mean: 'uuid',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据
@@ -340,11 +340,11 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'addressTypeList') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : []
         } else if (item.param === 'fencePoint') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : {}
         } else if (item.param === 'filterTagList') {
-          this.bypointObj[item.param] = JSON.parse(item.value)
+          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : []
         } else {
           this.bypointObj[item.param] = item.value
         }

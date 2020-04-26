@@ -12,6 +12,10 @@ const Questions = () => import('views/questions/Questions')
 
 // 主模块
 const Home = () => import('views/Home')
+// 概要
+const Summary = () => import('views/v1/summary/Summary')
+// 指南
+const Gettingstarted = () => import('views/v1/gettingstarted/Gettingstarted')
 // 地理编码模块
 const Geo = () => import('views/v1/geocode/Geo')
 const Regeo = () => import('views/v1/geocode/Regeo')
@@ -77,171 +81,184 @@ const routes = [{
   path: '/case',
   component: Case
 },
-{
-  path: '/questions',
-  component: Questions
-},
+// {
+//   path: '/questions',
+//   component: Questions
+// },
 {
   path: '/home',
-  redirect: '/v1/geocode/geo',
+  redirect: '/summary',
   // path: '/v1/geocode/geo',
   component: Home,
-  children: [{
-    path: '/v1/geocode/geo',
-    component: Geo
-  },
-  {
-    path: '/v1/geocode/regeo',
-    component: Regeo
-  },
-  // {
-  //   path: '/health',
-  //   component: Health
-  // },
-  {
-    path: '/v1/site/byid',
-    component: Byid
-  },
-  {
-    path: '/v1/site/condtion',
-    component: Condtion
-  },
-  {
-    path: '/v1/site/delete',
-    component: Delete
-  },
-  {
-    path: '/v1/site/insert-site-all',
-    component: InsertSiteAll
-  },
-  {
-    path: '/v1/site/page',
-    component: Page
-  },
-  {
-    path: '/v1/site/sync',
-    component: Sync
-  },
-  {
-    path: '/v1/site/upsert',
-    component: Upsert
-  },
-  {
-    path: '/v1/vehicle/cars',
-    component: Cars
-  },
-  {
-    path: '/v1/vehicle/nearest-car',
-    component: NearestCar
-  },
-  {
-    path: '/v1/distance/multi-origin',
-    component: MultiOrigin
-  },
-  {
-    path: '/v1/distance/query',
-    component: Query
-  },
-  {
-    path: '/v1/route/compute',
-    component: Compute
-  },
-  {
-    path: '/v1/route/drive-route-plan',
-    component: DriveRoutePlan
-  },
-  {
-    path: '/v1/route/vehicle-track',
-    component: VehicleTrack
-  },
-  {
-    path: '/v1/heatmap/query-disparity-heatmap-data',
-    component: QueryDisparity
-  },
-  {
-    path: '/v1/heatmap/query-heatmap-data',
-    component: QueryHeatmap
-  },
-  {
-    path: '/v1/fence/byids',
-    component: Byids
-  },
-  {
-    path: '/v1/fence/bypoint',
-    component: Bypoint
-  },
-  {
-    path: '/v1/fence/condition',
-    component: Condition
-  },
-  {
-    path: '/v1/fence/delete',
-    component: FenceDelete
-  },
-  {
-    path: '/v1/fence/is-intersection',
-    component: Intersection
-  },
-  {
-    path: '/v1/fence/is-point-in-condition',
-    component: InCondition
-  },
-  {
-    path: '/v1/fence/is-point-in-uuids',
-    component: Uuids
-  },
-  {
-    path: '/v1/fence/page',
-    component: FencePage
-  },
-  {
-    path: '/v1/fence/sync-status',
-    component: SyncStatus
-  },
-  {
-    path: '/v1/fence/update-status',
-    component: UpdateStatus
-  },
-  {
-    path: '/v1/fence/upsert',
-    component: FenceUpsert
-  },
-  {
-    path: '/v1/point/convert-to-gad-location',
-    component: Location
-  },
-  {
-    path: '/v1/point/is-point-in-polygon',
-    component: Polygon
-  },
-  {
-    path: '/v1/poi/around',
-    component: Around
-  },
-  {
-    path: '/v1/poi/custom/byid',
-    component: CustomByid
-  },
-  {
-    path: '/v1/poi/custom/count-by-condition',
-    component: CustomCondition
-  },
-  {
-    path: '/v1/poi/custom/page',
-    component: PoiPage
-  },
-  {
-    path: '/v1/poi/custom/status-switch',
-    component: Switch
-  },
-  {
-    path: '/v1/poi/custom/upsert',
-    component: PoiUpsert
-  },
-  {
-    path: '/v1/poi/keyword',
-    component: Keyword
-  }
+  children: [
+    {
+      path: '/summary',
+      component: Summary
+    },
+    {
+      path: '/gettingstarted',
+      component: Gettingstarted
+    },
+    {
+      path: '/v1/geocode/geo',
+      component: Geo
+    },
+    {
+      path: '/v1/geocode/regeo',
+      component: Regeo
+    },
+    // {
+    //   path: '/health',
+    //   component: Health
+    // },
+    {
+      path: '/v1/site/byid',
+      component: Byid
+    },
+    {
+      path: '/v1/site/condtion',
+      component: Condtion
+    },
+    {
+      path: '/v1/site/delete',
+      component: Delete
+    },
+    {
+      path: '/v1/site/insert-site-all',
+      component: InsertSiteAll
+    },
+    {
+      path: '/v1/site/page',
+      component: Page
+    },
+    {
+      path: '/v1/site/sync',
+      component: Sync
+    },
+    {
+      path: '/v1/site/upsert',
+      component: Upsert
+    },
+    {
+      path: '/v1/vehicle/cars',
+      component: Cars
+    },
+    {
+      path: '/v1/vehicle/nearest-car',
+      component: NearestCar
+    },
+    {
+      path: '/v1/distance/multi-origin',
+      component: MultiOrigin
+    },
+    {
+      path: '/v1/distance/query',
+      component: Query
+    },
+    {
+      path: '/v1/route/compute',
+      component: Compute
+    },
+    {
+      path: '/v1/route/drive-route-plan',
+      component: DriveRoutePlan
+    },
+    {
+      path: '/v1/route/vehicle-track',
+      component: VehicleTrack
+    },
+    {
+      path: '/v1/heatmap/query-disparity-heatmap-data',
+      component: QueryDisparity
+    },
+    {
+      path: '/v1/heatmap/query-heatmap-data',
+      component: QueryHeatmap
+    },
+    {
+      path: '/v1/fence/byids',
+      component: Byids
+    },
+    {
+      path: '/v1/fence/bypoint',
+      component: Bypoint
+    },
+    {
+      path: '/v1/fence/condition',
+      component: Condition
+    },
+    {
+      path: '/v1/fence/delete',
+      component: FenceDelete
+    },
+    {
+      path: '/v1/fence/is-intersection',
+      component: Intersection
+    },
+    {
+      path: '/v1/fence/is-point-in-condition',
+      component: InCondition
+    },
+    {
+      path: '/v1/fence/is-point-in-uuids',
+      component: Uuids
+    },
+    {
+      path: '/v1/fence/page',
+      component: FencePage
+    },
+    {
+      path: '/v1/fence/sync-status',
+      component: SyncStatus
+    },
+    {
+      path: '/v1/fence/update-status',
+      component: UpdateStatus
+    },
+    {
+      path: '/v1/fence/upsert',
+      component: FenceUpsert
+    },
+    {
+      path: '/v1/point/convert-to-gad-location',
+      component: Location
+    },
+    {
+      path: '/v1/point/is-point-in-polygon',
+      component: Polygon
+    },
+    {
+      path: '/v1/poi/around',
+      component: Around
+    },
+    {
+      path: '/v1/poi/custom/byid',
+      component: CustomByid
+    },
+    {
+      path: '/v1/poi/custom/count-by-condition',
+      component: CustomCondition
+    },
+    {
+      path: '/v1/poi/custom/page',
+      component: PoiPage
+    },
+    {
+      path: '/v1/poi/custom/status-switch',
+      component: Switch
+    },
+    {
+      path: '/v1/poi/custom/upsert',
+      component: PoiUpsert
+    },
+    {
+      path: '/v1/poi/keyword',
+      component: Keyword
+    },
+    {
+      path: '/questions',
+      component: Questions
+    }
   ]
 }
 ]

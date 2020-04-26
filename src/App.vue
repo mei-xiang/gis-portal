@@ -13,6 +13,7 @@ export default {
 <style>
 @import 'assets/css/normalize.css';
 @import 'assets/css/base.css';
+@import 'assets/css/font-awesome.min.css';
 
 #app {
   width: 100%;

@@ -50,14 +50,14 @@ export default {
           param: 'list',
           mean: '指定多边形集合 经纬度间用逗号隔开113.356779,23.129758',
           type: 'Array[List]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'point',
           mean:
             'Point {lat (number, optional),lng (number, optional)}。指定坐标',
           type: 'Point',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -66,14 +66,14 @@ export default {
           value: '[0]',
           mean:
             '指定多边形集合 经纬度间用逗号隔开113.356779,23.129758。如：[113.356779,23.129758,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'point',
           value: '{"lat": 0,"lng": 0}',
           mean:
             'Point {lat (number, optional),lng (number, optional)}。指定坐标',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据

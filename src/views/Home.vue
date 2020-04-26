@@ -16,9 +16,13 @@
             unique-opened
             :router="true"
           >
-            <!-- <el-menu-item index="/summary">
-            <span slot="title">概述</span>
-            </el-menu-item>-->
+            <el-menu-item index="/summary">
+              <span slot="title">概述</span>
+            </el-menu-item>
+
+            <el-menu-item index="/gettingstarted">
+              <span slot="title">指南</span>
+            </el-menu-item>
 
             <el-submenu index="/v1/geocode">
               <template slot="title">
@@ -118,6 +122,10 @@
               <el-menu-item index="/v1/poi/custom/upsert">新增或者修改</el-menu-item>
               <el-menu-item index="/v1/poi/keyword">poi关键字检索</el-menu-item>
             </el-submenu>
+
+            <el-menu-item index="/questions">
+              <span slot="title">常见问题</span>
+            </el-menu-item>
 
             <!-- <el-menu-item index="/download">
             <span slot="title">相关下载</span>

@@ -50,49 +50,49 @@ export default {
           param: 'adCode',
           mean: '区域编码',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'address',
           mean: 'address',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'addressDetail',
           mean: '详细地址',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaId',
           mean: 'areaId',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'bizTypeEnum',
           mean: 'LIFT/AUTO_DRIVER',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
           mean: 'cityCode',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           mean: 'createTime',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'creator',
           mean: 'creator',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'currentPage',
@@ -104,13 +104,13 @@ export default {
           param: 'lat',
           mean: '纬度',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lng',
           mean: '经度',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pageSize',
@@ -123,17 +123,17 @@ export default {
           mean:
             '不传时为新增，上车点id（共12位，前八位创建的年月日，后四位数字按创建顺序升序，不足4位用0补齐，如20203250001，202032513451 或 业务标识+自增的 12位，如SFC0000001 总长度 10 位',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           mean: '1：上车点 2： 下车点',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
-          mean: 'status',
+          mean: 'true 使用 false 停用',
           type: 'Boolean',
           request: '必填'
         },
@@ -141,13 +141,13 @@ export default {
           param: 'updateTime',
           mean: 'updateTime',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updater',
           mean: 'updater',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -155,49 +155,49 @@ export default {
           param: 'adCode',
           value: 'string',
           mean: '区域编码',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'address',
           value: 'string',
           mean: 'address',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'addressDetail',
           value: 'string',
           mean: '详细地址',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'areaId',
           value: 'string',
           mean: 'areaId',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'bizTypeEnum',
           value: 'LIFT',
           mean: 'LIFT/AUTO_DRIVER',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'cityCode',
           value: 'string',
           mean: 'cityCode',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'createTime',
           value: '2020-04-25T10:18:56.215Z',
           mean: 'createTime',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'creator',
           value: 'string',
           mean: 'creator',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'currentPage',
@@ -209,13 +209,13 @@ export default {
           param: 'lat',
           value: 'string',
           mean: '纬度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'lng',
           value: 'string',
           mean: '经度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pageSize',
@@ -228,31 +228,31 @@ export default {
           value: 'string',
           mean:
             '不传时为新增，上车点id（共12位，前八位创建的年月日，后四位数字按创建顺序升序，不足4位用0补齐，如20203250001，202032513451 或 业务标识+自增的 12位，如SFC0000001 总长度 10 位',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'pointType',
           value: 1,
           mean: '1：上车点 2： 下车点',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'status',
           value: 'true',
-          mean: 'status',
+          mean: 'true 使用 false 停用',
           request: '必填'
         },
         {
           param: 'updateTime',
           value: '2020-04-25T10:18:56.215Z',
           mean: 'updateTime',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'updater',
           value: 'string',
           mean: 'updater',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据

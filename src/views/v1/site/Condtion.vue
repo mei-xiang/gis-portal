@@ -18,7 +18,7 @@
       <el-table-column prop="param" label="参数"></el-table-column>
       <el-table-column prop="mean" label="含义"></el-table-column>
       <el-table-column prop="type" label="类型"></el-table-column>
-      <el-table-column prop="request" label="是否选填"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
     <p>服务实例</p>
     <el-table :data="exptableData" border style="width: 100%" class="expTable">
@@ -29,7 +29,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="mean" label="含义"></el-table-column>
-      <el-table-column prop="request" label="是否选填"></el-table-column>
+      <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
     <h4>响应</h4>
     <button class="run" @click="run" style="margin: 10px 0">运行</button>
@@ -301,13 +301,20 @@ export default {
     run() {
       this.isRun = true
       // 遍历整合数据
+      // 要是没有传数据，默认传递空对象
       this.exptableData.forEach((item, index) => {
         if (item.param === 'cityCodeList') {
-          this.condtionObj[item.param] = JSON.parse(item.value)
+          this.condtionObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : []
         } else if (item.param === 'coordinate') {
-          this.condtionObj[item.param] = JSON.parse(item.value)
+          this.condtionObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : {}
         } else if (item.param === 'typeList') {
-          this.condtionObj[item.param] = JSON.parse(item.value)
+          this.condtionObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : []
         } else {
           this.condtionObj[item.param] = item.value
         }

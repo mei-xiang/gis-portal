@@ -64,19 +64,19 @@ export default {
           mean:
             '批量出发地到同一目的地,最多100个,上面的单个出发地不传。Coordinate {lat (number, optional),lng (number, optional)}',
           type: 'Array[Coordinate]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'originsLag',
           mean: '出发点 纬度',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'originsLng',
           mean: '出发点 经度',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
@@ -104,19 +104,19 @@ export default {
           value: '[{"lat": 0,"lng": 0}]',
           mean:
             '批量出发地到同一目的地,最多100个,上面的单个出发地不传。Coordinate {lat (number, optional),lng (number, optional)}。如：[{"lat": 0,"lng": 0}]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'originsLag',
           value: 0,
           mean: '出发点 纬度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'originsLng',
           value: 0,
           mean: '出发点 经度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
@@ -137,7 +137,9 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'originList') {
-          this.distanceObj[item.param] = JSON.parse(item.value)
+          this.distanceObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : [{}]
         } else {
           this.distanceObj[item.param] = item.value
         }

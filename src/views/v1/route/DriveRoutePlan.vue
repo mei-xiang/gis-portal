@@ -57,46 +57,46 @@ export default {
           param: 'cartype',
           mean: '0：普通汽车(默认值) 1：纯电动车 2：插电混动车',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'destination',
           mean: '目的地',
           type: 'Location',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'ferry',
           mean:
             '在路径规划中，是否使用轮渡，默认 0 0:使用渡轮(默认) 1:不使用渡轮',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'number',
           mean:
             '填入除省份及标点之外，车牌的字母和数字（需大写）。用于判断限行相关。(例如：A12345)',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'origin',
           mean: '出发点',
           type: 'Location',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'province',
           mean: '用汉字填入车牌省份缩写，用于判断是否限行，（例如：京）',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'roadaggregation',
           mean:
             '是否返回路径聚合信息，默认 false。false:不返回路径聚合信息;true:返回路径聚合信息，在steps上层增加roads做聚合',
           type: 'Boolean',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'strategy',
@@ -108,7 +108,7 @@ export default {
           param: 'waypoints',
           mean: '途径点，最多16个，按照用户输入顺序放入。',
           type: 'Array[Location]',
-          request: '必填'
+          request: '选填'
         }
       ],
       tableData1: [
@@ -116,43 +116,43 @@ export default {
           param: 'direction',
           mean: 'direction',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'executeOrderStatus',
           mean: 'executeOrderStatus',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'latitude',
           mean: 'latitude',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'longitude',
           mean: 'longitude',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'onlineStatus',
           mean: 'onlineStatus',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'timestamp',
           mean: 'timestamp',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vin',
           mean: 'vin',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -160,7 +160,7 @@ export default {
           param: 'cartype',
           value: 0,
           mean: '0：普通汽车(默认值) 1：纯电动车 2：插电混动车',
-          request: '必填',
+          request: '选填',
           type: 'cartype'
         },
         // {
@@ -168,55 +168,55 @@ export default {
         //   value: 0,
         //   mean: '目的地',
         //   type: 'Location',
-        //   request: '必填'
+        //   request: '选填'
         // },
         {
           param: 'direction',
           value: 0,
           mean: '目的地-direction',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'executeOrderStatus',
           value: 0,
           mean: '目的地-executeOrderStatus',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'latitude',
           value: 0,
           mean: '目的地-latitude',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'longitude',
           value: 0,
           mean: '目的地-longitude',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'onlineStatus',
           value: 0,
           mean: '目的地-onlineStatus',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'timestamp',
           value: 0,
           mean: '目的地-timestamp',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
           param: 'vin',
           value: 'vin',
           mean: '目的地-string',
-          request: '必填',
+          request: '选填',
           type: 'destination'
         },
         {
@@ -224,7 +224,7 @@ export default {
           value: 0,
           mean:
             '在路径规划中，是否使用轮渡，默认 0 0:使用渡轮(默认) 1:不使用渡轮',
-          request: '必填',
+          request: '选填',
           type: 'ferry'
         },
         {
@@ -232,7 +232,7 @@ export default {
           value: 'string',
           mean:
             '填入除省份及标点之外，车牌的字母和数字（需大写）。用于判断限行相关。(例如：A12345)',
-          request: '必填',
+          request: '选填',
           type: 'number'
         },
         // {
@@ -240,62 +240,62 @@ export default {
         //   value: 0,
         //   mean: '出发点',
         //   type: 'Location',
-        //   request: '必填'
+        //   request: '选填'
         // },
         {
           param: 'direction',
           value: 0,
           mean: '出发点-direction',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'executeOrderStatus',
           value: 0,
           mean: '出发点-executeOrderStatus',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'latitude',
           value: 0,
           mean: '出发点-latitude',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'longitude',
           value: 0,
           mean: '出发点-longitude',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'onlineStatus',
           value: 0,
           mean: '出发点-onlineStatus',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'timestamp',
           value: 0,
           mean: '出发点-timestamp',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'vin',
           value: 'string',
           mean: '出发点-vin',
-          request: '必填',
+          request: '选填',
           type: 'origin'
         },
         {
           param: 'province',
           value: 'string',
           mean: '用汉字填入车牌省份缩写，用于判断是否限行，（例如：京）',
-          request: '必填',
+          request: '选填',
           type: 'province'
         },
         {
@@ -303,7 +303,7 @@ export default {
           value: 'true',
           mean:
             '是否返回路径聚合信息，默认 false。false:不返回路径聚合信息;true:返回路径聚合信息，在steps上层增加roads做聚合',
-          request: '必填',
+          request: '选填',
           type: 'roadaggregation'
         },
         {
@@ -318,55 +318,55 @@ export default {
         //   value: 0,
         //   mean: '途径点，最多16个，按照用户输入顺序放入。',
         //   type: 'Array[Location]',
-        //   request: '必填'
+        //   request: '选填'
         // }
         {
           param: 'direction',
           value: 0,
           mean: '途径点-direction',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'executeOrderStatus',
           value: 0,
           mean: '途径点-executeOrderStatus',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'latitude',
           value: 0,
           mean: '途径点-latitude',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'longitude',
           value: 0,
           mean: '途径点-longitude',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'onlineStatus',
           value: 0,
           mean: '途径点-onlineStatus',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'timestamp',
           value: 0,
           mean: '途径点-timestamp',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         },
         {
           param: 'vin',
           value: 'string',
           mean: '途径点-vin',
-          request: '必填',
+          request: '选填',
           type: 'waypoints'
         }
       ],

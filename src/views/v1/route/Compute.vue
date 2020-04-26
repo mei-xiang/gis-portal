@@ -50,13 +50,13 @@ export default {
           param: 'key',
           mean: 'key',
           type: 'String',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'map',
           mean: 'map',
           type: 'Object',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -64,13 +64,13 @@ export default {
           param: 'key',
           value: 'string',
           mean: 'key',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'map',
           value: '{}',
           mean: 'map',
-          request: '必填'
+          request: '选填'
         }
       ],
       content: ''

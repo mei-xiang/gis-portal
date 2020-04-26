@@ -51,13 +51,13 @@ export default {
           param: 'direction',
           mean: '方向角度',
           type: 'Number',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'executeOrderStatus',
           mean: '车辆上订单状态，0:空，1:满, 2:拼车',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'latitude',
@@ -75,19 +75,19 @@ export default {
           param: 'onlineStatus',
           mean: '司机登录上下线状态，0:下线，1:上线',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'timestamp',
           mean: '上报设备网络时间',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vin',
           mean: '车架号',
           type: 'String',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -95,13 +95,13 @@ export default {
           param: 'direction',
           value: 0,
           mean: '方向角度',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'executeOrderStatus',
           value: 0,
           mean: '车辆上订单状态，0:空，1:满, 2:拼车',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'latitude',
@@ -119,19 +119,19 @@ export default {
           param: 'onlineStatus',
           value: 0,
           mean: '司机登录上下线状态，0:下线，1:上线',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'timestamp',
           value: 0,
           mean: '上报设备网络时间',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vin',
           value: 'string',
           mean: '车架号',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据

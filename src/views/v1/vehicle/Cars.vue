@@ -51,7 +51,7 @@ export default {
           param: 'executeOrderStatus',
           mean: '车辆上订单状态，0:空，1:满, 2:拼车',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'latitude',
@@ -63,7 +63,7 @@ export default {
           param: 'limit',
           mean: '最多取多少辆',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'longitude',
@@ -75,31 +75,31 @@ export default {
           param: 'onlineStatus',
           mean: '司机登录上下线状态，0:下线，1:上线',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'radius',
           mean: '范围半径【单位：米】',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
           mean: '车辆类型',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'useLevelTypeList',
           mean: '1经济型 2舒适型 3行政型 4商务型 5尊贵型',
           type: 'Array[integer]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vehicleStatus',
           mean: '车辆状态信息 0-不显示 1-显示',
           type: 'Integer',
-          request: '必填'
+          request: '选填'
         }
       ],
       exptableData: [
@@ -107,7 +107,7 @@ export default {
           param: 'executeOrderStatus',
           value: 0,
           mean: '车辆上订单状态，0:空，1:满, 2:拼车',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'latitude',
@@ -119,7 +119,7 @@ export default {
           param: 'limit',
           value: 0,
           mean: '最多取多少辆',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'longitude',
@@ -131,31 +131,31 @@ export default {
           param: 'onlineStatus',
           value: 0,
           mean: '司机登录上下线状态，0:下线，1:上线',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'radius',
           value: 0,
           mean: '范围半径【单位：米】',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'type',
           value: 0,
           mean: '车辆类型',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'useLevelTypeList',
           value: '[0]',
           mean: '1经济型 2舒适型 3行政型 4商务型 5尊贵型。如：[1,2,...]',
-          request: '必填'
+          request: '选填'
         },
         {
           param: 'vehicleStatus',
           value: 0,
           mean: '车辆状态信息 0-不显示 1-显示',
-          request: '必填'
+          request: '选填'
         }
       ],
       // 运行显示数据
@@ -169,7 +169,7 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'useLevelTypeList') {
-          this.carObj[item.param] = JSON.parse(item.value)
+          this.carObj[item.param] = item.value ? JSON.parse(item.value) : []
         } else {
           this.carObj[item.param] = item.value
         }
