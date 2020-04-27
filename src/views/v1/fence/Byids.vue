@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>批量获取电子围栏信息接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/byids</p>
+    <p>http://{{domainName}}:8080/v1/fence/byids</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getByidsData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'uuids',

@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>同步更新全部围栏数据的状态接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/sync-status</p>
+    <p>http://{{domainName}}:8080/v1/fence/sync-status</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -29,11 +29,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getSyncStatusData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [],
       content: ''
     }

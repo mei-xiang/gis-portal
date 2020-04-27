@@ -23,8 +23,19 @@
     </div>
     <p class="title">T3-GIS平台路线规划的优势</p>
     <p class="desc">高德路线规划基于全面的路网信息，结合实时路况，在多端为用户提供准确的路线规划能力</p>
-    <div class="info">
-      <img src="~assets/images/info.png" alt />
+    <div class="info all">
+      <div class="item">
+        <img src="~assets/images/case/case1.png" alt />
+        <p>全面的路网信息</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/case2.png" alt />
+        <p>精准的实时路况</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/case3.png" alt />
+        <p>全面的导航方式</p>
+      </div>
     </div>
     <div class="banner">
       <div class="left">
@@ -54,9 +65,32 @@
     <div class="geo">
       <img src="~assets/images/geo.png" alt />
     </div>
-    <p class="title">完善的地图数据系统</p>
-    <div class="system">
-      <img src="~assets/images/system.png" alt />
+    <p class="title" style="margin-bottom: 50px;">完善的地图数据系统</p>
+    <div class="info all">
+      <div class="item">
+        <img src="~assets/images/case/img1.png" alt />
+        <p>POI 数据</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/img2.png" alt />
+        <p>地址数据</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/img3.png" alt />
+        <p>公交数据</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/img4.png" alt />
+        <p>行政区划数据</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/img5.png" alt />
+        <p>天气数据</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/case/img6.png" alt />
+        <p>业务数据</p>
+      </div>
     </div>
     <div class="footer">
       <img class="logo" src="~assets/images/logo.png" alt />
@@ -105,7 +139,7 @@ export default {
     background: #6486d2;
     color: #fff;
     .left {
-      max-width: 504px;
+      max-width: 530px;
     }
     img {
       height: 100%;
@@ -123,8 +157,10 @@ export default {
     }
     .platform {
       font-size: 18px;
-      line-height: 1;
       white-space: nowrap;
+      color: #fff;
+      height: 30px;
+      line-height: 30px;
       span {
         padding: 0 9px;
       }
@@ -153,7 +189,19 @@ export default {
   .info {
     text-align: center;
     img {
-      width: 80%;
+      // width: 80%;
+    }
+  }
+  .all {
+    display: flex;
+    .item {
+      flex: 1;
+      p {
+        font-size: 16px;
+        color: #535353;
+        line-height: 1;
+        margin-bottom: 84px;
+      }
     }
   }
   .platform .fa {

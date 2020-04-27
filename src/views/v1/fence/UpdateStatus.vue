@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>更新围栏状态接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/update-status?uuid=&status=</p>
+    <p>http://{{domainName}}:8080/v1/fence/update-status?uuid=&status=</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getUpdateStatusData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'uuid',

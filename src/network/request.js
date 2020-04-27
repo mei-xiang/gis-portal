@@ -2,11 +2,12 @@
  * 用于请求的相关配置，返回的是axios对象
  */
 import axios from 'axios'
+import { BASEURL } from 'common/const'
 
 export function request(config) {
   // 创建axios实例
   const instance = axios.create({
-    baseURL: 'http://192.168.44.152:8080'
+    baseURL: BASEURL
   })
 
   instance.interceptors.request.use(

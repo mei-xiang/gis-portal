@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>获取热力图统计数据接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/heatmap/query-heatmap-data</p>
+    <p>http://{{domainName}}:8080/v1/heatmap/query-heatmap-data</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getHeatmapData } from 'network/heatmap'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'areaCode',

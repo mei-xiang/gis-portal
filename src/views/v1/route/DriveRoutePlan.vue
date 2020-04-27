@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>驾车路径规划接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/route/drive-route-plan</p>
+    <p>http://{{domainName}}:8080/v1/route/drive-route-plan</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -47,11 +47,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getDriveRoutePlanData } from 'network/route'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'cartype',

@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>判断一个或多个坐标是否在指定条件的电子围标内，并返回查到的围栏集合，坐标满足其中任意一个围栏即可接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/is-point-in-condition</p>
+    <p>http://{{domainName}}:8080/v1/fence/is-point-in-condition</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -47,11 +47,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getInConditionData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'coordinateList',
@@ -248,7 +250,9 @@ export default {
       this.isRun = true
       this.exptableData.forEach((item, index) => {
         if (item.param === 'coordinateList') {
-          this.bypointObj[item.param] = item.value ? JSON.parse(item.value) : [{}]
+          this.bypointObj[item.param] = item.value
+            ? JSON.parse(item.value)
+            : [{}]
         } else if (item.param === 'addressTypeList') {
           this.bypointObj.fenceQuery[item.param] = item.value
             ? JSON.parse(item.value)

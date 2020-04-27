@@ -11,7 +11,7 @@
     <h2>接口使用说明</h2>
     <h3>批量距离计算接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/distance/multi-origin</p>
+    <p>http://{{domainName}}:8080/v1/distance/multi-origin</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -41,11 +41,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getMultiOrigin } from 'network/distance'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'destinationLag',

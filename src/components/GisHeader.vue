@@ -2,7 +2,7 @@
   <div>
     <el-header class="topbar">
       <div class="logo">
-        <router-link to="/" class="logo">
+        <router-link to="/introduce" class="logo">
           <img src="~assets/images/logo.png" style="height: 35px;" alt />
         </router-link>
       </div>
@@ -22,14 +22,14 @@
         </router-link>
       </div>
       <div class="questions" @click="tap(4)" :class="{isActive: currentIndex == 4}">
-        <router-link to="/questions">
-          <span>FAQ</span>
+        <router-link to="/questions/flow">
+          <span>常见问题</span>
         </router-link>
       </div>
-      <div class="search">
+      <!-- <div class="search">
         <input type="text" autocomplete="off" />
         <i class="fa fa-search"></i>
-      </div>
+      </div> -->
     </el-header>
   </div>
 </template>

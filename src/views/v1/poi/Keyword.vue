@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>poi关键字检索</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/poi/keyword</p>
+    <p>http://{{domainName}}:8080/v1/poi/keyword</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getKeywordData } from 'network/poi'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'address',

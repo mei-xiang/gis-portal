@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>判断一个或多个坐标是否在指定的一批围栏内，并返回所有的匹配的围栏结果接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/fence/upsert</p>
+    <p>http://{{domainName}}/v1/fence/upsert</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getFenceUpsertData } from 'network/fence'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'addressTypeList',

@@ -36,7 +36,22 @@
         <img src="~assets/images/server.png" alt />
       </div>
       <div class="travel">
-        <img src="~assets/images/pic.png" alt />
+        <h1 class>安全稳定，保障您的业务发展</h1>
+        <div class="item">
+          <img src="~assets/images/introduce/pic1.png" alt />
+          <h2>稳定的服务可用性</h2>
+          <p>超高的服务可用性，持续稳定支持您的业务发展</p>
+        </div>
+        <div class="item">
+          <img src="~assets/images/introduce/pic2.png" alt />
+          <h2>快速的服务响应</h2>
+          <p>服务请求到达高德至完成处理的平均时长不超过200ms</p>
+        </div>
+        <div class="item">
+          <img src="~assets/images/introduce/pic3.png" alt />
+          <h2>全方位的技术支持</h2>
+          <p>工单体系提供全方位的技术支持，更有技术支持专业版可供选择</p>
+        </div>
       </div>
       <div class="footer">
         <img class="logo" src="~assets/images/logo.png" alt />
@@ -87,6 +102,8 @@ export default {
   h1 {
     text-align: center;
     font-weight: 500;
+    font-size: 25px;
+    color: #1e2437;
   }
   .product {
     display: flex;
@@ -113,14 +130,44 @@ export default {
     width: 100%;
     img {
       width: 100%;
+      display: block;
     }
   }
   .travel {
     width: 100%;
     background: linear-gradient(to right, #dee6f2, #f1f5ff);
     text-align: center;
-    img {
-      width: 80%;
+    display: flex;
+    padding-top: 120px;
+    position: relative;
+    h1 {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 20px;
+      font-size: 28px;
+      font-weight: 200;
+      color: #1e2437;
+    }
+    .item {
+      flex: 1;
+      h2 {
+        height: 58px;
+        font-size: 22px;
+        line-height: 58px;
+        color: #222324;
+        font-weight: 200;
+      }
+      p {
+        height: 64px;
+        line-height: 24px;
+        font-size: 14px;
+        color: #222324;
+        font-weight: 200;
+      }
+      img {
+        // width: 80%;
+      }
     }
   }
   .footer {

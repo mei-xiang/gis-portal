@@ -2,13 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 首页
-const Index = () => import('views/Index')
+// const Index = () => import('views/Index')
 // 中心介绍
 const Introduce = () => import('views/introduce/Introduce')
 // 案例文档
 const Case = () => import('views/case/Case')
-// FAQ
-const Questions = () => import('views/questions/Questions')
+// 常见问题
+const Flow = () => import('views/questions/Flow')
+const Offset = () => import('views/questions/Offset')
+const Node = () => import('views/questions/Node')
 
 // 主模块
 const Home = () => import('views/Home')
@@ -70,8 +72,8 @@ Vue.use(VueRouter)
 
 const routes = [{
   path: '/',
-  // redirect: '/home'
-  component: Index
+  redirect: '/introduce',
+  component: Introduce
 },
 {
   path: '/introduce',
@@ -256,8 +258,16 @@ const routes = [{
       component: Keyword
     },
     {
-      path: '/questions',
-      component: Questions
+      path: '/questions/flow',
+      component: Flow
+    },
+    {
+      path: '/questions/offset',
+      component: Offset
+    },
+    {
+      path: '/questions/node',
+      component: Node
     }
   ]
 }

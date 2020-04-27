@@ -10,7 +10,7 @@
     <h2>接口使用说明</h2>
     <h3>行驶路径规划计算接口</h3>
     <h4>请求地址</h4>
-    <p>http://192.168.44.152:8080/v1/route/vehicle-track</p>
+    <p>http://{{domainName}}:8080/v1/route/vehicle-track</p>
     <h4>请求方法</h4>
     <p>POST</p>
     <h4>请求</h4>
@@ -40,11 +40,13 @@
 </template>
 
 <script>
+import { DOMAIN_NAME } from 'common/const'
 import { getVehicleTrackData } from 'network/route'
 export default {
   data() {
     return {
       isRun: false,
+      domainName: DOMAIN_NAME,
       tableData: [
         {
           param: 'endTime',
@@ -66,7 +68,8 @@ export default {
         },
         {
           param: 'tollInfo',
-          mean: '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
+          mean:
+            '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
           type: 'Integer',
           request: '选填'
         },
@@ -105,7 +108,8 @@ export default {
         {
           param: 'tollInfo',
           value: 0,
-          mean: '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
+          mean:
+            '是否返回道路收费信息（轨迹对应道路的路桥费总和）。 1 - 返回， 0 - 不返回， 默认值 0',
           request: '选填'
         },
         {
