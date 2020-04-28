@@ -45,7 +45,7 @@
         <div class="item">
           <img src="~assets/images/introduce/pic2.png" alt />
           <h2>快速的服务响应</h2>
-          <p>服务请求到达高德至完成处理的平均时长不超过200ms</p>
+          <p>服务请求到达T3至完成处理的平均时长不超过200ms</p>
         </div>
         <div class="item">
           <img src="~assets/images/introduce/pic3.png" alt />
@@ -104,6 +104,7 @@ export default {
     font-weight: 500;
     font-size: 25px;
     color: #1e2437;
+    border: none !important;
   }
   .product {
     display: flex;
@@ -148,6 +149,7 @@ export default {
       font-size: 28px;
       font-weight: 200;
       color: #1e2437;
+      border: none !important;
     }
     .item {
       flex: 1;
@@ -179,8 +181,6 @@ export default {
     font-size: 14px;
     .logo {
       display: inline-block;
-      width: 165px;
-      height: 49px;
     }
     > p {
       opacity: 0.56;

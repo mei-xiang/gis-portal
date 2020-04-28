@@ -1,3 +1,8 @@
+// let transformRemoveConsolePlugin = []
+// if (process.env.NODE_ENV === 'production') {
+//   transformRemoveConsolePlugin = ['transform-remove-console']
+// }
+
 module.exports = {
   configureWebpack: {
     resolve: {
@@ -16,6 +21,11 @@ module.exports = {
     port: 8080,
     https: false,
     hotOnly: false,
-    open: true //配置自动启动浏览器
+    open: true // 配置自动启动浏览器
   }
+  // ,
+  // // 打包去除console.log()
+  // plugins: [
+  //   ...transformRemoveConsolePlugin
+  // ]
 }

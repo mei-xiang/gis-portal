@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>围栏相关接口</el-breadcrumb-item>
       <el-breadcrumb-item>同步更新全部围栏数据的状态</el-breadcrumb-item>
     </el-breadcrumb>

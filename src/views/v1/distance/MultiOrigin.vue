@@ -3,7 +3,7 @@
     <!-- 面包屑 -->
     <!-- :to="{ path: '/v1/geocode/geo' }" -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>距离计算</el-breadcrumb-item>
       <el-breadcrumb-item>批量距离计算</el-breadcrumb-item>
     </el-breadcrumb>
@@ -21,7 +21,11 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
-    <p>服务实例</p>
+        <ul style="padding-left: 18px;">
+      <li style="list-style: disc;">
+        <strong>服务示例</strong>
+      </li>
+    </ul>
     <el-table :data="exptableData" border style="width: 100%" class="expTable">
       <el-table-column prop="param" label="参数"></el-table-column>
       <el-table-column label="值">
@@ -83,7 +87,7 @@ export default {
         {
           param: 'type',
           mean:
-            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现高德地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
+            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现T3地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
           type: 'Integer',
           request: '必填'
         }
@@ -124,7 +128,7 @@ export default {
           param: 'type',
           value: 0,
           mean:
-            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现高德地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
+            '类型 0：直线距离 1：驾车导航距离（仅支持国内坐标）必须指出，当为1时会考虑路况，故在不同时间请求返回结果可能不同。此策略和驾车路径规划接口的 strategy=4策略基本一致，策略为“ 躲避拥堵的路线，但是可能会存在绕路的情况，耗时可能较长。若需要实现T3地图客户端效果，可以考虑使用驾车路径规划接口 2：公交规划距离（仅支持同城坐标,QPS不可超过1，否则可能导致意外） 3：步行规划距离（仅支持5km之间的距离）',
           request: '必填'
         }
       ],

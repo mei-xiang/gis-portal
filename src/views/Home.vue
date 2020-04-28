@@ -106,7 +106,7 @@
               <template slot="title">
                 <span>坐标相关接口</span>
               </template>
-              <el-menu-item index="/v1/point/convert-to-gad-location">将GPS坐标转为高德坐标</el-menu-item>
+              <el-menu-item index="/v1/point/convert-to-gad-location">将GPS坐标转为T3坐标</el-menu-item>
               <el-menu-item index="/v1/point/is-point-in-polygon">坐标是否在指定多边形内</el-menu-item>
             </el-submenu>
 
@@ -127,7 +127,7 @@
               <template slot="title">
                 <span>常见问题</span>
               </template>
-              <el-menu-item index="/questions/flow">流程异常</el-menu-item>
+              <el-menu-item index="/questions/flow">H3算法jar包使用注意事项</el-menu-item>
               <el-menu-item index="/questions/offset">坐标解析偏移</el-menu-item>
               <el-menu-item index="/questions/node">道路节点</el-menu-item>
             </el-submenu>
@@ -158,6 +158,9 @@ export default {
 <style lang="less" scope>
 .home {
   width: 100%;
+  // width: 1280px;
+  margin: auto;
+  padding: 16px 0;
   .header {
     width: 100%;
   }
@@ -165,7 +168,7 @@ export default {
     // padding: 0;
   }
   .container {
-    padding: 16px 0 16px 30px;
+    padding: 16px 50px 16px 50px;
     .el-aside {
       .el-menu-item.is-active {
         background-color: #42a5f5 !important;

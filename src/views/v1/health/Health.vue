@@ -3,7 +3,7 @@
     <!-- 面包屑 -->
     <!-- :to="{ path: '/v1/geocode/geo' }" -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>服务健康检查</el-breadcrumb-item>
       <el-breadcrumb-item>服务健康</el-breadcrumb-item>
     </el-breadcrumb>

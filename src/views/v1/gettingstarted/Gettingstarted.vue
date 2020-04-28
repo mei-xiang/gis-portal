@@ -1,7 +1,7 @@
 <template>
   <div class="summary">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>指南</el-breadcrumb-item>
     </el-breadcrumb>
     <h1 class="title">概述</h1>

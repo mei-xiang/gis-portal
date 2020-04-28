@@ -2,13 +2,13 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>坐标相关接口</el-breadcrumb-item>
-      <el-breadcrumb-item>将GPS坐标转为高德坐标</el-breadcrumb-item>
+      <el-breadcrumb-item>将GPS坐标转为T3坐标</el-breadcrumb-item>
     </el-breadcrumb>
-    <h1 class="title">将GPS坐标转为高德坐标</h1>
+    <h1 class="title">将GPS坐标转为T3坐标</h1>
     <h2>接口使用说明</h2>
-    <h3>将GPS坐标转为高德坐标接口</h3>
+    <h3>将GPS坐标转为T3坐标接口</h3>
     <h4>请求地址</h4>
     <p>http://{{domainName}}:8080/v1/point/convert-to-gad-location</p>
     <h4>请求方法</h4>
@@ -21,7 +21,11 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
-    <p>服务实例</p>
+        <ul style="padding-left: 18px;">
+      <li style="list-style: disc;">
+        <strong>服务示例</strong>
+      </li>
+    </ul>
     <el-table :data="exptableData" border style="width: 100%" class="expTable">
       <el-table-column prop="param" label="参数"></el-table-column>
       <el-table-column label="值">

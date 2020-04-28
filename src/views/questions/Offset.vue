@@ -2,7 +2,7 @@
   <div class="questions">
     <!-- <gis-header></gis-header> -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>常见问题</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="content">

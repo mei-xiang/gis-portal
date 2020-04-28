@@ -13,7 +13,7 @@
       </div>
       <div class="api">
         <router-link to="/summary" @click="tap(2)" :class="{isActive: currentIndex == 2}">
-          <span>api接入说明</span>
+          <span>API接入说明</span>
         </router-link>
       </div>
       <div class="case" @click="tap(3)" :class="{isActive: currentIndex == 3}">
@@ -51,7 +51,6 @@ export default {
   //   } else if (this.$route.path.indexOf('questions') !== -1) {
   //     this.currentIndex = 4
   //   }
-  //   console.log(this.currentIndex)
   // },
   // watch: {
   //   currentIndex() {
@@ -68,7 +67,6 @@ export default {
   // },
   methods: {
     tap(index) {
-      // console.log(index)
       this.currentIndex = index
     }
   }

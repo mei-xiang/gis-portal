@@ -2,7 +2,7 @@
   <div class="geo">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>服务站相关</el-breadcrumb-item>
       <el-breadcrumb-item>同步服务站点信息到GIS</el-breadcrumb-item>
     </el-breadcrumb>
@@ -21,7 +21,11 @@
       <el-table-column prop="type" label="类型"></el-table-column>
       <el-table-column prop="request" label="是否必填"></el-table-column>
     </el-table>
-    <p>服务实例</p>
+        <ul style="padding-left: 18px;">
+      <li style="list-style: disc;">
+        <strong>服务示例</strong>
+      </li>
+    </ul>
     <el-table :data="exptableData" border style="width: 100%" class="expTable">
       <el-table-column prop="param" label="参数"></el-table-column>
       <el-table-column label="值">
@@ -320,7 +324,6 @@ export default {
           this.condtionObj[item.param] = item.value
         }
       })
-      // console.log(this.condtionObj)
       getSyncData([this.condtionObj]).then(res => {
         this.content = res
       })

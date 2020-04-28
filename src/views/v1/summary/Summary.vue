@@ -1,16 +1,27 @@
 <template>
   <div class="summary">
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>api接入说明</el-breadcrumb-item>
+      <el-breadcrumb-item>API接入说明</el-breadcrumb-item>
       <el-breadcrumb-item>概述</el-breadcrumb-item>
     </el-breadcrumb>
     <h1 class="title">概述</h1>
     <p>最后更新时间: 2020年04月26日</p>
     <h2>Web服务API简介</h2>
-    <p>高德Web服务API向开发者提供HTTP接口，开发者可通过这些接口使用各类型的地理数据服务，返回结果支持JSON和XML格式。</p>
+    <p>T3Web服务API向开发者提供HTTP接口，开发者可通过这些接口使用各类型的地理数据服务，返回结果支持JSON和XML格式。</p>
     <p>Web服务API对所有用户开放。使用本组服务之前，需要申请应用Key。不同类型用户可获取不同的数据访问能力。</p>
     <div class="summaryBox">
-      <img src="~assets/images/summary.png" alt />
+      <div class="item">
+        <img src="~assets/images/summary/pic1.png" alt />
+        <p>搜索</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/summary/pic2.png" alt />
+        <p>路径规划</p>
+      </div>
+      <div class="item">
+        <img src="~assets/images/summary/pic3.png" alt />
+        <p>行驶距离测量</p>
+      </div>
     </div>
   </div>
 </template>
@@ -50,8 +61,12 @@ p {
 }
 .summaryBox {
   width: 100%;
-  img {
-    width: 90%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  .item {
+    flex: 1;
   }
 }
 </style>

@@ -6,12 +6,12 @@
         <h3>路线规划</h3>
         <p class="platform">
           适用平台:
-          <span class="fa fa-code"></span>
+          <!-- <span class="fa fa-code"></span>
           <span>Web</span>
           <span class="fa fa-android"></span>
           <span>Android</span>
           <span class="fa fa-apple"></span>
-          <span>iOS</span>
+          <span>iOS</span>-->
           <span class="fa fa-television"></span>
           <span>Web Service</span>
         </p>
@@ -22,7 +22,7 @@
       <img src="~assets/images/travel.png" alt />
     </div>
     <p class="title">T3-GIS平台路线规划的优势</p>
-    <p class="desc">高德路线规划基于全面的路网信息，结合实时路况，在多端为用户提供准确的路线规划能力</p>
+    <p class="desc">T3路线规划基于全面的路网信息，结合实时路况，在多端为用户提供准确的路线规划能力</p>
     <div class="info all">
       <div class="item">
         <img src="~assets/images/case/case1.png" alt />
@@ -42,12 +42,12 @@
         <h3>搜索</h3>
         <p class="platform">
           适用平台:
-          <span class="fa fa-code"></span>
+          <!-- <span class="fa fa-code"></span>
           <span>Web</span>
           <span class="fa fa-android"></span>
           <span>Android</span>
           <span class="fa fa-apple"></span>
-          <span>iOS</span>
+          <span>iOS</span>-->
           <span class="fa fa-television"></span>
           <span>Web Service</span>
         </p>
@@ -58,7 +58,7 @@
       <img src="~assets/images/travel.png" alt />
     </div>
     <p class="title">多种搜索方式</p>
-    <p class="desc">高德提供了千万级别的POI，通过POI搜索，可以完成找银行，找餐馆、找景点等等的功能</p>
+    <p class="desc">T3提供了千万级别的POI，通过POI搜索，可以完成找银行，找餐馆、找景点等等的功能</p>
     <div class="info">
       <img src="~assets/images/poi.png" alt />
     </div>
@@ -199,8 +199,10 @@ export default {
       p {
         font-size: 16px;
         color: #535353;
-        line-height: 1;
+        // line-height: 1;
         margin-bottom: 84px;
+        height: 30px;
+        line-height: 30px;
       }
     }
   }
@@ -233,8 +235,6 @@ export default {
     font-size: 14px;
     .logo {
       display: inline-block;
-      width: 165px;
-      height: 49px;
     }
     > p {
       opacity: 0.56;
